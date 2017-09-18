@@ -1,0 +1,50 @@
+.neal-customer-quotes {
+  .neal-horizontal-split-col {
+    margin-bottom: 6rem;
+  } 
+}
+
+.neal-customer-quote-img {
+  width: 6rem;
+  height: 6rem;
+  background-size: cover;
+  background-origin: border-box;
+  background-position: 50%;
+  border-radius: 50%;
+  /* float: left; */
+  margin-right: 1rem;
+  display: inline-block;
+  vertical-align: middle;    
+}
+
+.neal-customer-quote-profile {
+  text-align: center;
+}
+
+.neal-customer-quote-quote .ratings {
+  position: absolute;
+  right: 25px;
+  bottom: 60px;  
+
+  @include small-screen {
+    position: relative;
+    right: auto;
+    bottom: auto;
+  }
+
+  margin-bottom: 0;
+  font-size: 1.5rem;
+}
+
+.neal-customer-quote {
+  $height: 350px;
+  height: $height;
+  text-align: justify;
+  @include small-screen { height: auto; }
+
+  .neal-customer-quote-quote {
+    height: $height;
+    @include small-screen { height: auto; }
+  }
+
+}

@@ -1,0 +1,140 @@
+
+.neal-navbar {
+
+  .navbar-brand {
+    float: left;
+  }
+
+  .neal-footer-social {
+    flex-direction: row;
+  }
+}
+
+.subhero {
+  text-align: center;
+  h3 {
+    line-height: 2.5;
+  }
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.neal-section {
+
+  ul {
+
+    margin: 0;
+    
+    li {
+      margin: 0;
+    }
+
+  }
+
+  &.inline-cta {
+    padding: 2rem;
+    text-align: center;
+  }
+
+}
+
+.neal-pricing-plan-action {
+  text-align: center;
+}
+
+.neal-footer {
+  p {
+    margin-bottom: 0;
+
+    &.neal-footer-copyright {
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  .navbar-nav.neal-footer-social {
+    flex-direction: row;
+    -ms-flex-direction: row;
+  }
+
+  .social-icons-container {
+    width: 270px;
+    margin: 2rem auto 0;    
+  }
+
+}
+
+.who-why-how {
+
+  p {
+    text-align: justify;
+  }
+
+  .girl,
+  .like,
+  .skype {
+    @include transform( scale(0.5) );
+    @include transform-origin(left);
+  }
+}
+
+.neal-signup-modal {
+
+  .modal-body {
+    p {
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      text-align: justify;
+    }
+  }
+
+}
+
+.please-wait-modal {
+  
+  .modal-body {
+    text-align: center;
+  }
+
+  img {
+    margin: auto;
+  }
+}
+
+.product-info-modal {
+
+  .modal-body {
+    p {
+      font-size: 1rem;
+    }
+  }
+  
+}
+
+.modal-body p {
+  font-size: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.form-control {
+  padding: 0.8rem;
+  font-size: 0.8rem;
+}
+
+.modal-error {
+
+  .modal-header {
+    color: white;
+    background-color: #a94442;
+  }
+
+  .modal-content {
+    color: #a94442;
+  }
+
+}
+
+.skype.neal-footer-social-icon i.fa-stack-2x { color: #12A5F4; }
+.whatsapp.neal-footer-social-icon i.fa-stack-2x { color: #25D366; }
+.google.neal-footer-social-icon i.fa-stack-2x { color: #d34836; }
