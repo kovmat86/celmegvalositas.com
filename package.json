@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "./build.sh",
+    "deploy": "./deploy.sh",
     "lint": "eslint src/js/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "cd node_modules/neal-react && npm install",
@@ -34,7 +35,6 @@
     "forever": "^0.15.3",
     "html-webpack-plugin": "^2.24.1",
     "lodash": "^4.17.3",
-    "minimist": "^1.2.0",
     "neal-react": "^0.2.5",
     "node-sass": "^4.1.1",
     "pug": "^2.0.0-beta6",
@@ -53,6 +53,8 @@
     "eslint": "^3.12.2",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1"
+    "eslint-plugin-standard": "^2.0.1",
+    "ftp-deploy": "^1.2.2",
+    "minimist": "^1.2.0"
   }
 }
