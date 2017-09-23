@@ -1,7 +1,53 @@
 /* global ga, jQuery */
 import React from 'react';
 
-export default class GoogleAnalytics extends React.Component {
+function trackOpenRequestModal() {
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'Request an appointment',
+    eventAction: 'click',
+    eventLabel: 'Open'
+  });
+}
+
+function trackSubmitEvent() {
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'Request an appointment',
+    eventAction: 'click',
+    eventLabel: 'Submit'
+  });      
+}
+
+function trackSubmitSuccess() {
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'Request an appointment',
+    eventAction: 'click',
+    eventLabel: 'Success'
+  });
+}
+
+function trackSubmitFailure() {
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'Request an appointment',
+    eventAction: 'click',
+    eventLabel: 'Error'
+  });
+}    
+
+function trackProductEvent(evt, data) {
+  var title = data.title || 'Invalid product';
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'Product',
+    eventAction: 'click',
+    eventLabel: title
+  });
+}
+
+class GoogleAnalytics extends React.Component {
 
   static propTypes = {
     account: React.PropTypes.string.isRequired,
@@ -28,3 +74,6 @@ export default class GoogleAnalytics extends React.Component {
     return <div key='google-analytics' />;
   }
 }
+
+export { GoogleAnalytics, trackProductEvent, trackSubmitSuccess, trackSubmitFailure, trackSubmitEvent, trackOpenRequestModal };
+export default GoogleAnalytics;
