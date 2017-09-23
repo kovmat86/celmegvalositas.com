@@ -1,17 +1,19 @@
-/* global $, ga */
+/* global $ */
 import React from 'react';
-import { HorizontalSplit, Navbar, NavItem, Page, Section, SignupModal } from 'neal-react';
+import { Page, Section, SignupModal } from 'neal-react';
 import { ContentProvider } from '../components/ContentProvider';
-import GoogleAnalytics from '../components/GoogleAnalytics';
+import GoogleAnalytics, { trackProductEvent, trackSubmitSuccess, trackSubmitFailure, trackSubmitEvent, trackOpenRequestModal } from '../components/GoogleAnalytics';
 import HeroVideo from '../components/HeroVideo';
-import ProductPlan from '../components/ProductPlan';
-import { CustomerFeedbacks, CustomerFeedback } from '../components/CustomerFeedback';
+import CustomerFeedbackSection from '../components/CustomerFeedbackSection';
 import { Footer } from '../components/Footer';
 import PleaseWaitModal from '../components/PleaseWaitModal';
 import ErrorModal from '../components/ErrorModal';
 import ProductInfoModal from '../components/ProductInfoModal';
-import { Team, TeamMember } from '../components/Team';
-import '../components/SignupModal.Textarea';
+import NavigationHeader from '../components/NavigationHeader';
+import WhereWeAre from '../components/WhereWeAre';
+import WhoWeAre from '../components/WhoWeAre'; 
+import WhyChooseUs from '../components/WhyChooseUs';
+import HowWeWork from '../components/HowWeWork';
 
 const heroVideo = {
   poster: '/resources/images/first-frame-hero.jpg',
@@ -20,64 +22,6 @@ const heroVideo = {
     type: 'video/mp4'
   }
 };
-
-function registerGAEvents() {
-  $('[data-target=#request-appointment-modal]').click(() => {
-    $(document).trigger('request/open');
-  });
-  
-  $(document).on('request/open', trackOpenRequestModal);
-  $(document).on('request/submit', trackSubmitEvent);
-  $(document).on('request/submit/happy-path', trackSubmitSuccess);
-  $(document).on('request/submit/sad-path', trackSubmitFailure);
-  $(document).on('click/product', trackProductEvent);
-}
-
-function trackOpenRequestModal() {
-  ga('send', {
-    hitType: 'event',
-    eventCategory: 'Request an appointment',
-    eventAction: 'click',
-    eventLabel: 'Open'
-  });
-}
-
-function trackSubmitEvent() {
-  ga('send', {
-    hitType: 'event',
-    eventCategory: 'Request an appointment',
-    eventAction: 'click',
-    eventLabel: 'Submit'
-  });      
-}
-
-function trackSubmitSuccess() {
-  ga('send', {
-    hitType: 'event',
-    eventCategory: 'Request an appointment',
-    eventAction: 'click',
-    eventLabel: 'Success'
-  });
-}
-
-function trackSubmitFailure() {
-  ga('send', {
-    hitType: 'event',
-    eventCategory: 'Request an appointment',
-    eventAction: 'click',
-    eventLabel: 'Error'
-  });
-}    
-
-function trackProductEvent(evt, data) {
-  var title = data.title || 'Invalid product';
-  ga('send', {
-    hitType: 'event',
-    eventCategory: 'Product',
-    eventAction: 'click',
-    eventLabel: title
-  });
-}
 
 export default class Homepage extends React.Component {
 
@@ -89,126 +33,6 @@ export default class Homepage extends React.Component {
       pleaseWaitModal: ContentProvider.get('pleaseWaitModal'),
       defaultErrorModal: ContentProvider.get('defaultErrorModal')
     };
-  }
-
-  componentDidMount() {
-    registerGAEvents();
-  }
-
-  renderHeaderNavigation() {
-    const menus = this.state.homepage.headerNavigation.map(item => {
-      const props = {
-        title: item.title,
-        url: item.url
-      };
-      return (
-        <NavItem>
-          <a className="nav-link" href={ props.url } target="_blank">{ props.title }</a>
-        </NavItem>
-      );
-    });
-
-    return (
-      <Navbar brand={this.state.business.title}>
-        { menus }
-      </Navbar>
-    );
-
-  }
-
-  renderProductList() {
-    const productList = this.state.homepage.productList;
-    const numberOfFeaturesOfPremiumProduct = (products => {
-      const premium = products[products.length - 1];
-      if (premium && premium.features) {
-        return premium.features.length || 0;
-      } else {
-        return 0;
-      }
-    })(productList);
-
-    const products = productList.map(item => {
-      const pricing = {
-        name: item.title,
-        description: item.description,
-        price: item.prize,
-        buttonText: item.ctaLabel,
-        color: item.color,
-        bestSeller: item.bestSeller,
-        features: (() => {
-          if (item.features && item.features.length) {
-            const diff = numberOfFeaturesOfPremiumProduct - item.features.length;
-            if (item.features.length < numberOfFeaturesOfPremiumProduct) {
-              for (let i = 0; i < diff; i += 1) {
-                item.features.push('');
-              }
-            }
-          }
-          return item.features;
-        })(),
-        onClick: evt => {
-          evt.preventDefault();
-          $(document).trigger('click/product', item);
-        }
-      };
-      return (
-        <ProductPlan {... pricing} />
-      );
-    });
-
-    return (
-      <div className="row">
-        { products }
-      </div>
-
-    );
-  }
-
-  renderFeedbackList() {
-
-    const feedbacks = this.state.homepage.feedbacks.map(item => {
-      const props = {
-        text: item.text,
-        rating: item.rating,        
-        name: item.customerName
-      };
-      if (item.customerPortrait && item.customerPortrait.file) {
-        props.imageUrl = 'http:' + item.customerPortrait.file.url;
-      }
-      return (
-        <CustomerFeedback {... props} />
-      );
-    });
-
-    return (
-      <CustomerFeedbacks>
-        { feedbacks }
-      </CustomerFeedbacks>
-    );
-  }
-
-  renderMemberList() {
-
-    const members = this.state.homepage.memberList.map(member => {
-      const props = {
-        name: member.name,
-        title: member.title,
-      };
-      if (member.picture && member.picture.file) {
-        props.imageUrl = 'http:' + member.picture.file.url;
-      }
-      return (
-        <TeamMember {... props}>
-          { member.introduction }
-        </TeamMember>
-      );
-    });
-
-    return (
-      <Team>
-        { members }
-      </Team>
-    );
   }
 
   renderRequestModal() {
@@ -299,8 +123,6 @@ export default class Homepage extends React.Component {
           <SignupModal.Input name="name" required label={content.name} placeholder={content.name} />
           <SignupModal.Input name="age" required label="Age" placeholder={content.age} />
           <SignupModal.Input type="email" required name="email" label={content.email} placeholder={content.email} />
-          <SignupModal.Textarea required name="intro" label="Introduction" placeholder={content.intro} />
-          <SignupModal.Textarea required name="request" rows="3" label="Request" placeholder={content.request} />
         </div>
       </SignupModal>
     );
@@ -349,69 +171,31 @@ export default class Homepage extends React.Component {
       <Page>
         
         <GoogleAnalytics account="UA-90406705-1" />
-
-        { this.renderHeaderNavigation() }
+        <NavigationHeader title={this.state.business.title} data={this.state.homepage.headerNavigation } />
 
         <HeroVideo {... heroVideo}>
           <h1 className="display-4 animated fadeInDown">{this.state.homepage.missionStatement}</h1>
           <p className="lead animated fadeInDown">{this.state.homepage.elevatorPitch}</p>
-          <p>
-            <a data-toggle="modal" data-target="#request-appointment-modal" className="btn btn-white">
-              {this.state.homepage.mainCta.title}
-            </a>
-          </p>
         </HeroVideo>
 
-        <Section className="subhero gray">
-          <h3>{ this.state.homepage.subHeroTitle }</h3>
-        </Section>
-
-        <Section className="who-why-how">
-          <HorizontalSplit padding="md">
-            <div>
-              <div className="sprite girl" title="Made by Feepik at Flaticons.com" />
-              <p className="lead">{ this.state.homepage.whoSection.title }</p>
-              <p>{ this.state.homepage.whoSection.text }</p>
-            </div>
-            <div>
-              <div className="sprite like" title="Made by Madebyoliver at Flaticons.com" />
-              <p className="lead">{ this.state.homepage.whySection.title }</p>
-              <p>{ this.state.homepage.whySection.text }</p>
-            </div>
-            <div>
-              <div className="sprite skype" title="Made by Madebyoliver at Flaticons.com" />
-              <p className="lead">{ this.state.homepage.howSection.title }</p>
-              <p>{ this.state.homepage.howSection.text }</p>
-            </div>
-          </HorizontalSplit>
-        </Section>        
-
-        <Section className="inline-cta gray">
-          <p>
-            <a data-toggle="modal" data-target="#request-appointment-modal" className="btn btn-ghost btn-primary btn-lg">
-              {this.state.homepage.mainCta.title}
-            </a>
-          </p>          
+        <Section>
+          <WhoWeAre />
         </Section>
 
         <Section>
-          { this.renderProductList() }
-        </Section>
-
-        <Section className="inline-cta gray">
-          <p>
-            <a data-toggle="modal" data-target="#request-appointment-modal" className="btn btn-ghost btn-primary btn-lg">
-              {this.state.homepage.mainCta.title}
-            </a>
-          </p>          
-        </Section>        
-
-        <Section>
-          { this.renderFeedbackList() }
+          <WhyChooseUs />
         </Section>
 
         <Section>
-          { this.renderMemberList() }
+          <HowWeWork />
+        </Section>
+
+        <Section>
+          <CustomerFeedbackSection data={this.state.homepage.feedbacks} />
+        </Section>
+
+        <Section>
+          <WhereWeAre />
         </Section>
 
         { this.renderRequestModal() }

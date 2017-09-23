@@ -1,7 +1,6 @@
 import React from 'react';
-import { HorizontalSplit } from 'neal-react';
 
-export class CustomerFeedback extends React.Component {
+class CustomerFeedback extends React.Component {
 
   static propTypes = {
     name: React.PropTypes.string.isRequired,
@@ -50,22 +49,5 @@ export class CustomerFeedback extends React.Component {
 
 }
 
-export class CustomerFeedbacks extends React.Component {
-
-  static propTypes = {
-    // TODO: Enforce CustomerQuote type
-    children: React.PropTypes.arrayOf(React.PropTypes.element),
-  };
-
-  render() {
-    return (
-      <div className="neal-customer-quotes">
-        <HorizontalSplit>
-          {this.props.children}
-        </HorizontalSplit>
-      </div>
-    );
-  }
-}
-
-CustomerFeedbacks.CustomerFeedback = CustomerFeedback;
+export { CustomerFeedback };
+export default CustomerFeedback;

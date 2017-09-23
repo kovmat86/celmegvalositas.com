@@ -23,7 +23,7 @@ export default class PleaseWaitModal extends React.Component {
               <h3>{ this.props.title }</h3>
             </div>
             <div className="modal-body">
-                <img src="/resources/images/ajax-loader.gif" alt="Loading animation" />
+              <img src="/resources/images/ajax-loader.gif" alt="Loading animation" />
             </div>
           </div>
         </div>
