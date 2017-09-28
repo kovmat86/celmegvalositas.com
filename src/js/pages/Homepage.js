@@ -1,6 +1,7 @@
 /* global $ */
 import React from 'react';
 import { Page, Section, SignupModal } from 'neal-react';
+import Universe from '../components/Universe';
 import { ContentProvider } from '../components/ContentProvider';
 import GoogleAnalytics, { trackProductEvent, trackSubmitSuccess, trackSubmitFailure, trackSubmitEvent, trackOpenRequestModal } from '../components/GoogleAnalytics';
 import HeroVideo from '../components/HeroVideo';
@@ -167,54 +168,55 @@ export default class Homepage extends React.Component {
 
   render() {
     return (
-      
-      <Page>
-        
-        <GoogleAnalytics account="UA-103461022-2" />
-        <NavigationHeader title={this.state.business.title} data={this.state.homepage.headerNavigation } />
+      <Universe>
+        <Page>
+          
+          <GoogleAnalytics account="UA-103461022-2" />
+          <NavigationHeader title={this.state.business.title} data={this.state.homepage.headerNavigation } />
 
-        <HeroVideo {... heroVideo}>
-          <h1 className="display-4 animated fadeInDown">{this.state.homepage.missionStatement}</h1>
-          <p className="lead animated fadeInDown">{this.state.homepage.elevatorPitch}</p>
-        </HeroVideo>
+          <HeroVideo {... heroVideo}>
+            <h1 className="display-4 animated fadeInDown">{this.state.homepage.missionStatement}</h1>
+            <p className="lead animated fadeInDown">{this.state.homepage.elevatorPitch}</p>
+          </HeroVideo>
 
-        <Section>
-          <WhoWeAre />
-        </Section>
+          <Section>
+            <WhoWeAre />
+          </Section>
 
-        <Section>
-          <WhyChooseUs />
-        </Section>
+          <Section>
+            <WhyChooseUs />
+          </Section>
 
-        <Section>
-          <HowWeWork />
-        </Section>
+          <Section>
+            <HowWeWork />
+          </Section>
 
-        <Section>
-          <CustomerFeedbackSection data={this.state.homepage.feedbacks} />
-        </Section>
+          <Section>
+            <CustomerFeedbackSection data={this.state.homepage.feedbacks} />
+          </Section>
 
-        <Section>
-          <WhereWeAre />
-        </Section>
+          <Section>
+            <WhereWeAre />
+          </Section>
 
-        { this.renderRequestModal() }
-        { this.renderRequestConfirmationModal() }
-        { this.renderPleaseWaitModal() }
-        { this.renderErrorModal() }
-        { this.renderProductInfoModal() }
+          { this.renderRequestModal() }
+          { this.renderRequestConfirmationModal() }
+          { this.renderPleaseWaitModal() }
+          { this.renderErrorModal() }
+          { this.renderProductInfoModal() }
 
-        <Footer brandName={this.state.business.title}
-          facebookUrl={this.state.business.facebookUrl}
-          twitterUrl={this.state.business.twitterUrl}
-          skype={this.state.business.skype}
-          whatsup={this.state.business.whatsup}
-          email={this.state.business.emailAddress}
-          phone1={this.state.business.phoneNumber}
-          phone2={this.state.business.phoneNumberOptional}
-          address={this.state.business.address} />
+          <Footer brandName={this.state.business.title}
+            facebookUrl={this.state.business.facebookUrl}
+            twitterUrl={this.state.business.twitterUrl}
+            skype={this.state.business.skype}
+            whatsup={this.state.business.whatsup}
+            email={this.state.business.emailAddress}
+            phone1={this.state.business.phoneNumber}
+            phone2={this.state.business.phoneNumberOptional}
+            address={this.state.business.address} />
 
-      </Page>
+        </Page>
+      </Universe>
     );
   }
 
