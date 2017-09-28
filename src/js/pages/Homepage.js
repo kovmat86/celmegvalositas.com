@@ -170,7 +170,7 @@ export default class Homepage extends React.Component {
       
       <Page>
         
-        <GoogleAnalytics account="UA-90406705-1" />
+        <GoogleAnalytics account="UA-103461022-2" />
         <NavigationHeader title={this.state.business.title} data={this.state.homepage.headerNavigation } />
 
         <HeroVideo {... heroVideo}>
