@@ -19,7 +19,7 @@ export default class Universe extends Component {
       currentClass: 'sdm-active',
       easing: 'swing',
     });
-    $(".scroll-nav li a[href^='#']").on('click', function(e) {
+    $('.scroll-nav li a[href^=\'#\']').on('click', function(e) {
       e.preventDefault();
       $('.scroll-nav li a').removeClass('sdm-active');
       $(this).addClass('sdm-active');
