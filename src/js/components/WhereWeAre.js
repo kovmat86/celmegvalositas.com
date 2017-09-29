@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import scriptLoader from 'react-async-script-loader';
 
-const GoogleMapAPIKey = '';
+const GoogleMapAPIKey = 'AIzaSyAFbBhRbW0SqBuFGANi-MdGh__Up9_smiw';
 
 class WhereWeAre extends React.Component {
 
