@@ -1,9 +1,15 @@
+/* global window, google */
 import React, { Component } from 'react'
 import scriptLoader from 'react-async-script-loader';
 
 const GoogleMapAPIKey = 'AIzaSyAFbBhRbW0SqBuFGANi-MdGh__Up9_smiw';
 
 class WhereWeAre extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.id = 'where-we-are-map';
+  }
 
   componentWillReceiveProps ({ isScriptLoaded, isScriptLoadSucceed }) {
     if (isScriptLoaded && !this.props.isScriptLoaded) { // load finished 
@@ -22,11 +28,16 @@ class WhereWeAre extends React.Component {
   }
 
   initMap() {
-
+    const map = new window.google.maps.Map(document.getElementById(this.id), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+    });
   }
 
   render() {
-    return null;
+    return (
+      <div id={this.id} />;
+    );
   }
 
 }
