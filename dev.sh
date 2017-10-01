@@ -18,7 +18,7 @@ export MESSAGE_SERVICE=http://nuevasaventuras.es:8095/email/send
 if [ -d "$DIST" ]; then rm -Rf $DIST; fi
 
 npm run lint
-webpack --config webpack.config.dev.js -p --bail
+webpack --config webpack.config.dev.js --bail
 
 # RESOURCES
 cp -r $SOURCE/$DIR_SASS $DIST/$DIR_CSS

@@ -1,10 +1,10 @@
-/* global window, google */
+/* global window */
 import React, { Component } from 'react'
 import scriptLoader from 'react-async-script-loader';
 
 const GoogleMapAPIKey = 'AIzaSyAFbBhRbW0SqBuFGANi-MdGh__Up9_smiw';
 
-class WhereWeAre extends React.Component {
+class WhereWeAre extends Component {
 
   constructor(props) {
     super(props);
@@ -36,7 +36,7 @@ class WhereWeAre extends React.Component {
 
   render() {
     return (
-      <div id={this.id} />;
+      <div id={this.id} />
     );
   }
 

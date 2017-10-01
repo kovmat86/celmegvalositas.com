@@ -12,6 +12,7 @@ function processFields(entry, locale) {
   }
   Object.keys(entry.fields).forEach(key => {
     const obj = entry.fields[key][locale];
+    if (!obj) return {};
     if (obj.forEach) {
       obj.forEach((value) => {
         if (!fields[key]) fields[key] = [];

@@ -29,10 +29,10 @@ export default class Homepage extends React.Component {
   constructor(props) {
     super(props); 
     this.state = {
-      business: ContentProvider.get('business'),
-      homepage: ContentProvider.get('homepage'),
-      pleaseWaitModal: ContentProvider.get('pleaseWaitModal'),
-      defaultErrorModal: ContentProvider.get('defaultErrorModal')
+      business: ContentProvider.get('business') || {},
+      homepage: ContentProvider.get('homepage') || {},
+      pleaseWaitModal: ContentProvider.get('pleaseWaitModal') || {},
+      defaultErrorModal: ContentProvider.get('defaultErrorModal') || {}
     };
   }
 
@@ -40,7 +40,7 @@ export default class Homepage extends React.Component {
 
     const modalId = 'request-appointment-modal';
     const messageServiceUrl = process.env.MESSAGE_SERVICE;
-    const content = this.state.homepage.requestAppointmentModal;
+    const content = this.state.homepage.requestAppointmentModal || {};
 
     function onSendRequest() {
       Promise
@@ -130,7 +130,13 @@ export default class Homepage extends React.Component {
   }
 
   renderRequestConfirmationModal() {
-    const content = this.state.homepage.requestAppointmentModal.confirmationModal;
+    let content;
+
+    if (!this.state.homepage.requestAppointmentModal) {
+      content = {};
+    } else {
+      content = this.state.homepage.requestAppointmentModal.confirmationModal || {};
+    }
     const modalId = 'request-confirmation-modal';
 
     function hideModal() {
@@ -147,14 +153,14 @@ export default class Homepage extends React.Component {
   }
 
   renderPleaseWaitModal() {
-    const content = this.state.pleaseWaitModal;
+    const content = this.state.pleaseWaitModal || {};
     return (
       <PleaseWaitModal title={content.text} modalId="please-wait-modal" />   
     );
   }
 
   renderErrorModal() {
-    const content = this.state.defaultErrorModal;
+    const content = this.state.defaultErrorModal || {};
     return (
       <ErrorModal title={content.title} text={content.text} buttonText={content.buttonText} modalId="error-modal" />
     );
@@ -189,7 +195,7 @@ export default class Homepage extends React.Component {
           </HeroVideo>
 
           <Section>
-            <WhoWeAre ContentProvider={ContentProvider} />
+            <WhoWeAre contentProvider={ContentProvider} />
           </Section>
 
           <Section>
@@ -198,10 +204,6 @@ export default class Homepage extends React.Component {
 
           <Section>
             <HowWeWork />
-          </Section>
-
-          <Section>
-            <CustomerFeedbackSection data={this.state.homepage.feedbacks} />
           </Section>
 
           <Section>

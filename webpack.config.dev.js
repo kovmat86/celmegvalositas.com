@@ -41,8 +41,7 @@ module.exports = {
         'CONTENTFUL_ACCESS_TOKEN': JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN),
         'MESSAGE_SERVICE': JSON.stringify(process.env.MESSAGE_SERVICE)
       }
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),       
+    }),      
     new HtmlWebpackPlugin({
       template: 'src/app.pug'
     })

@@ -8,19 +8,14 @@ class WhoWeAre extends React.Component {
 
   constructor(props) {
     super(props);
-  }
-
-  componentDidMount() {
-    this.setState({
-      content: this.props.contentProvider.get('whoweare')
-    });
+    this.state = this.props.contentProvider.get('whoweare') || {};
   }
 
   render() {
     return (
       <div className="who-we-are-container">
-        <h2>{this.state.content.title}</h2>
-        <p>{this.state.content.text}</p>
+        <h2>{this.state.title}</h2>
+        <p>{this.state.text}</p>
       </div>
     );
   }
