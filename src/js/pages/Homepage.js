@@ -5,6 +5,7 @@ import Universe from '../components/Universe';
 import { ContentProvider } from '../components/ContentProvider';
 import GoogleAnalytics, { trackProductEvent, trackSubmitSuccess, trackSubmitFailure, trackSubmitEvent, trackOpenRequestModal } from '../components/GoogleAnalytics';
 import HeroVideo from '../components/HeroVideo';
+import HeroVideoContent from '../components/HeroVideoContent';
 import CustomerFeedbackSection from '../components/CustomerFeedbackSection';
 import { Footer } from '../components/Footer';
 import PleaseWaitModal from '../components/PleaseWaitModal';

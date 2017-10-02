@@ -1,7 +1,6 @@
 'use strict';
 import React from 'react';
 import classNames from 'classnames';
-import { default as Video } from 'react-html5video';
 
 export default class HeroVideo extends React.Component {
 
