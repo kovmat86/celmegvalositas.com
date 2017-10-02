@@ -181,17 +181,7 @@ export default class Homepage extends React.Component {
           <NavigationHeader title={this.state.business.title} data={this.state.homepage.headerNavigation } />
 
           <HeroVideo {... heroVideo}>
-            <div className="row">
-              <div className="col">
-                <h1 className="display-4 animated fadeInDown">{this.state.homepage.missionStatement}</h1>
-                <p className="lead animated fadeInDown">{this.state.homepage.elevatorPitch}</p>
-              </div>
-              <div className="col">
-                <div className="consultation-container">
-                  The form comes here...
-                </div>
-              </div>
-            </div>
+            <HeroVideoContent contentProvider={ContentProvider} />
           </HeroVideo>
 
           <Section>
