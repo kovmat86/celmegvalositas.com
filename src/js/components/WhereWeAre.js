@@ -8,7 +8,7 @@ class WhereWeAre extends Component {
 
   constructor(props) {
     super(props);
-    this.id = 'where-we-are-map';
+    this.id = 'whereweare';
   }
 
   componentWillReceiveProps ({ isScriptLoaded, isScriptLoadSucceed }) {
@@ -36,7 +36,7 @@ class WhereWeAre extends Component {
 
   render() {
     return (
-      <div id={this.id} />
+      <div id={this.id} className="where-we-are-container" />
     );
   }
 

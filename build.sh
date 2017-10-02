@@ -11,8 +11,8 @@ DIR_FONTS=fonts
 RESOURCES=resources
 
 export NODE_ENV=production
-export CONTENTFUL_SPACE=v9u7v7jawm36
-export CONTENTFUL_ACCESS_TOKEN=a15a60af447bb88662e7eed5dc8ed2042d623307cfbda6b9c1e7aa849ca15ef7
+export CONTENTFUL_SPACE=le2r9m8siffu
+export CONTENTFUL_ACCESS_TOKEN=87cc9575c510bdf64212f7f3e21181d84dc8243fdfd75bf23949375aeb519dc8
 export MESSAGE_SERVICE=http://nuevasaventuras.es:8095/email/send
 
 if [ -d "$DIST" ]; then rm -Rf $DIST; fi

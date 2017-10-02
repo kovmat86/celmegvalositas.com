@@ -179,7 +179,7 @@ export default class Homepage extends React.Component {
         <Page>
           
           <GoogleAnalytics account="UA-103461022-2" />
-          <NavigationHeader title={this.state.business.title} data={this.state.homepage.headerNavigation } />
+          <NavigationHeader contentProvider={ContentProvider} title={this.state.business.title} />
 
           <HeroVideo {... heroVideo}>
             <HeroVideoContent contentProvider={ContentProvider} />
@@ -197,9 +197,7 @@ export default class Homepage extends React.Component {
             <HowWeWork />
           </Section>
 
-          <Section>
-            <WhereWeAre />
-          </Section>
+          <WhereWeAre />
 
           { this.renderRequestModal() }
           { this.renderRequestConfirmationModal() }

@@ -21,7 +21,7 @@ function syncContentFromContentful() {
   return ContentProvider.connect({
     space: process.env.CONTENTFUL_SPACE,
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-    locale: 'en-US'
+    locale: 'hu-HU'
   });
 }
 

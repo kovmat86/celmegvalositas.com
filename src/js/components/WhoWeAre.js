@@ -13,7 +13,7 @@ class WhoWeAre extends React.Component {
 
   render() {
     return (
-      <div className="who-we-are-container">
+      <div id="whoweare" className="who-we-are-container">
         <h2>{this.state.title}</h2>
         <p>{this.state.text}</p>
       </div>

@@ -24,16 +24,6 @@ export default class Universe extends Component {
       $('.scroll-nav li a').removeClass('sdm-active');
       $(this).addClass('sdm-active');
     });
-    // Smooth Scroll End
-    var win = $(window);
-    win.on('scroll',function() {
-      var scroll = win.scrollTop();
-      if (scroll >= 400) {
-        $('#side-cta').addClass('open');
-      } else {
-        $('#side-cta').removeClass('open');
-      }
-    });    
   }
 
   initViewportAnimationS() {

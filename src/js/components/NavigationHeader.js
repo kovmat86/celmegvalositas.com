@@ -1,28 +1,29 @@
 import React from 'react';
-import { Navbar, NavItem } from 'neal-react';
 
 class NavigationHeader extends React.Component {
 
-  render() {
-    let menus;
-    if (this.props.data) {
-      menus = this.props.data.map(item => {
-        const props = {
-          title: item.title,
-          url: item.url
-        };
-        return (
-          <NavItem>
-            <a className="nav-link" href={ props.url } target="_blank">{ props.title }</a>
-          </NavItem>
-        );
+  constructor(props) {
+    super(props);
+    this.state = this.props.contentProvider.get('navigation') || {};
+    console.log(this.state);
+  }
+
+  renderMenuItems() {
+    let menus = null;
+    if (this.state.items) {
+      menus = this.state.items.map((item, i) => {
+        return <li role="presentation" key={i}><a href={item.url}>{item.label}</a></li>
       });
     }
+    return menus;
+  }
 
+  render() {
     return (
-      <Navbar brand={this.props.title}>
-        { menus }
-      </Navbar>
+      <ul className="nav nav-pills menu-center margin-top-30 scroll-nav scroll-down">
+        <li role="presentation" key={999}><a href="#home"><i className="fa fa-home" />{this.props.title}</a></li>
+        {this.renderMenuItems()}
+      </ul>
     );
 
   }

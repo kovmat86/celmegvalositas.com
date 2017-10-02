@@ -15,16 +15,16 @@ export default class HeroVideo extends React.Component {
 
   render() {
 
-    const _className = classNames('hero-video-content-conteinr', this.props.className);
+    const _className = classNames('hero-video-content-conteiner', this.props.className);
 
     return (
       <div className={_className}>
-        <div className="row justify-content-md-center">
-          <div className="col col-md-6 col-sm-12 col-xs-12">
-            <h1 className="display-4 animated fadeInDown">{this.state.missionStatement}</h1>
+        <div className="row">
+          <div className="col-xs-12 col-md-6">
+            <h1 className="animated fadeInDown">{this.state.missionStatement}</h1>
             <p className="lead animated fadeInDown">{this.state.elevatorPitch}</p>
           </div>
-          <div className="col col-md-6 col-sm-12 col-xs-12">
+          <div className="col-xs-12 col-md-6">
             <div className="consultation-container">
               The form comes here...
             </div>

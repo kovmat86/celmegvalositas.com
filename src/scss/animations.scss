@@ -1,7 +1,21 @@
 @import "../../node_modules/animate.css/animate";
 
-.jumbotron {
-    p.animated {
-       @include animation-delay(.5s); 
-    }
+.viewport-animation:not(.in-viewport) {
+  animation-play-state: paused;
 }
+
+.delay-1 { animation-delay: 1s; }
+.delay-2 { animation-delay: 2s; }
+.delay-3 { animation-delay: 3s; }
+.delay-4 { animation-delay: 4s; }
+.delay-5 { animation-delay: 5s; }
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-250 { animation-delay: 0.25s; }
+.delay-500 { animation-delay: 0.5s; }
+
+.duration-1 { animation-duration: 1s; }
+.duration-2 { animation-duration: 2s; }
+.duration-3 { animation-duration: 3s; }
+.duration-4 { animation-duration: 4s; }
+.duration-5 { animation-duration: 5s; }
