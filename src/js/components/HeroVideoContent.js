@@ -21,8 +21,8 @@ export default class HeroVideo extends React.Component {
       <div className={_className}>
         <div className="row justify-content-md-center">
           <div className="col col-md-6 col-sm-12 col-xs-12">
-            <h1 className="display-4 animated fadeInDown">{this.state.homepage.missionStatement}</h1>
-            <p className="lead animated fadeInDown">{this.state.homepage.elevatorPitch}</p>
+            <h1 className="display-4 animated fadeInDown">{this.state.missionStatement}</h1>
+            <p className="lead animated fadeInDown">{this.state.elevatorPitch}</p>
           </div>
           <div className="col col-md-6 col-sm-12 col-xs-12">
             <div className="consultation-container">
