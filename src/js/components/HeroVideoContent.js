@@ -29,15 +29,15 @@ export default class HeroVideo extends React.Component {
               <form>
                 <div class="form-group row">
                   <div class="col">
-                    <input aria-label="email" type="email" class="form-control" id="consultation-form-email" placeholder="Email">
+                    <input aria-label="email" type="email" class="form-control" id="consultation-form-email" placeholder="Email" />
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col">
-                    <input aria-label="name" type="text" class="form-control" id="consultation-form-name" placeholder="Password">
+                    <input aria-label="name" type="text" class="form-control" id="consultation-form-name" placeholder="Password" />
                   </div>
                 </div>
-                <div class="row">
+                <div class="form-group row">
                   <div class="col pull-right">
                     <input type="submit" class="btn btn-warning btn-block" value="Submit" />
                   </div>
