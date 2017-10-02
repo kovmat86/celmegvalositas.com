@@ -8,7 +8,7 @@ class WhoWeAre extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = this.props.contentProvider.get('whoweare') || {};
+    this.state = this.props.contentProvider.get('whoAreWe') || {};
   }
 
   render() {
