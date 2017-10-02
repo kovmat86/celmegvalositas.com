@@ -25,8 +25,24 @@ export default class HeroVideo extends React.Component {
             <p className="lead animated fadeInDown">{this.state.elevatorPitch}</p>
           </div>
           <div className="col-xs-12 col-md-6">
-            <div className="consultation-container">
-              The form comes here...
+            <div className="container consultation-container">
+              <form>
+                <div class="form-group row">
+                  <div class="col">
+                    <input aria-label="email" type="email" class="form-control" id="consultation-form-email" placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col">
+                    <input aria-label="name" type="text" class="form-control" id="consultation-form-name" placeholder="Password">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col pull-right">
+                    <input type="submit" class="btn btn-warning btn-block" value="Submit" />
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
         </div>
