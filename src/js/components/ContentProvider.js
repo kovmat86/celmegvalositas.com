@@ -1,7 +1,6 @@
-'use strict';
-import { default as contentful } from 'contentful';
+import {createClient} from 'contentful';
 
-const DEFAULT_LOCALE = 'en-GB';
+const DEFAULT_LOCALE = 'en-US';
 const content = {};
 let client;
 
@@ -31,16 +30,16 @@ function processContent(entries, locale) {
   });
 }
 
-export let ContentProvider = {
+const ContentProvider = {
 
   connect(config) {
     if (!config) return Promise.resolve('Invalid config object');
 
-    client = contentful.createClient({
+    client = createClient({
       space: config.space,
-      accessToken: config.accessToken
+      accessToken: config.accessToken,
     });
-    
+
     return client.sync({initial: true})
       .then(response => {
         processContent(response.entries, config.locale || DEFAULT_LOCALE);
@@ -49,6 +48,9 @@ export let ContentProvider = {
 
   get(id) {
     return content[id];
-  }
+  },
 
 };
+
+export { ContentProvider };
+export default ContentProvider;

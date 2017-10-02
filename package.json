@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "./build.sh",
+    "dev": "./dev.sh",
     "deploy": "./deploy.sh",
     "lint": "eslint src/js/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -26,6 +27,7 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "bourbon": "^4.2.7",
+    "classnames": "^2.2.5",
     "compression": "^1.6.2",
     "contentful": "^3.8.0",
     "css-loader": "^0.26.1",
@@ -55,6 +57,7 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
     "ftp-deploy": "^1.2.2",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.0",
+    "react-async-script-loader": "^0.3.0"
   }
 }

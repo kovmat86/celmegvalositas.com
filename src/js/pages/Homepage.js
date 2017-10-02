@@ -1,9 +1,11 @@
 /* global $ */
 import React from 'react';
 import { Page, Section, SignupModal } from 'neal-react';
+import Universe from '../components/Universe';
 import { ContentProvider } from '../components/ContentProvider';
 import GoogleAnalytics, { trackProductEvent, trackSubmitSuccess, trackSubmitFailure, trackSubmitEvent, trackOpenRequestModal } from '../components/GoogleAnalytics';
 import HeroVideo from '../components/HeroVideo';
+import HeroVideoContent from '../components/HeroVideoContent';
 import CustomerFeedbackSection from '../components/CustomerFeedbackSection';
 import { Footer } from '../components/Footer';
 import PleaseWaitModal from '../components/PleaseWaitModal';
@@ -28,10 +30,10 @@ export default class Homepage extends React.Component {
   constructor(props) {
     super(props); 
     this.state = {
-      business: ContentProvider.get('business'),
-      homepage: ContentProvider.get('homepage'),
-      pleaseWaitModal: ContentProvider.get('pleaseWaitModal'),
-      defaultErrorModal: ContentProvider.get('defaultErrorModal')
+      business: ContentProvider.get('business') || {},
+      homepage: ContentProvider.get('homepage') || {},
+      pleaseWaitModal: ContentProvider.get('pleaseWaitModal') || {},
+      defaultErrorModal: ContentProvider.get('defaultErrorModal') || {}
     };
   }
 
@@ -39,7 +41,7 @@ export default class Homepage extends React.Component {
 
     const modalId = 'request-appointment-modal';
     const messageServiceUrl = process.env.MESSAGE_SERVICE;
-    const content = this.state.homepage.requestAppointmentModal;
+    const content = this.state.homepage.requestAppointmentModal || {};
 
     function onSendRequest() {
       Promise
@@ -129,7 +131,13 @@ export default class Homepage extends React.Component {
   }
 
   renderRequestConfirmationModal() {
-    const content = this.state.homepage.requestAppointmentModal.confirmationModal;
+    let content;
+
+    if (!this.state.homepage.requestAppointmentModal) {
+      content = {};
+    } else {
+      content = this.state.homepage.requestAppointmentModal.confirmationModal || {};
+    }
     const modalId = 'request-confirmation-modal';
 
     function hideModal() {
@@ -146,14 +154,14 @@ export default class Homepage extends React.Component {
   }
 
   renderPleaseWaitModal() {
-    const content = this.state.pleaseWaitModal;
+    const content = this.state.pleaseWaitModal || {};
     return (
       <PleaseWaitModal title={content.text} modalId="please-wait-modal" />   
     );
   }
 
   renderErrorModal() {
-    const content = this.state.defaultErrorModal;
+    const content = this.state.defaultErrorModal || {};
     return (
       <ErrorModal title={content.title} text={content.text} buttonText={content.buttonText} modalId="error-modal" />
     );
@@ -167,54 +175,48 @@ export default class Homepage extends React.Component {
 
   render() {
     return (
-      
-      <Page>
-        
-        <GoogleAnalytics account="UA-90406705-1" />
-        <NavigationHeader title={this.state.business.title} data={this.state.homepage.headerNavigation } />
+      <Universe>
+        <Page>
+          
+          <GoogleAnalytics account="UA-103461022-2" />
+          <NavigationHeader contentProvider={ContentProvider} title={this.state.business.title} />
 
-        <HeroVideo {... heroVideo}>
-          <h1 className="display-4 animated fadeInDown">{this.state.homepage.missionStatement}</h1>
-          <p className="lead animated fadeInDown">{this.state.homepage.elevatorPitch}</p>
-        </HeroVideo>
+          <HeroVideo {... heroVideo}>
+            <HeroVideoContent contentProvider={ContentProvider} />
+          </HeroVideo>
 
-        <Section>
-          <WhoWeAre />
-        </Section>
+          <Section>
+            <WhoWeAre contentProvider={ContentProvider} />
+          </Section>
 
-        <Section>
-          <WhyChooseUs />
-        </Section>
+          <Section>
+            <WhyChooseUs />
+          </Section>
 
-        <Section>
-          <HowWeWork />
-        </Section>
+          <Section>
+            <HowWeWork />
+          </Section>
 
-        <Section>
-          <CustomerFeedbackSection data={this.state.homepage.feedbacks} />
-        </Section>
-
-        <Section>
           <WhereWeAre />
-        </Section>
 
-        { this.renderRequestModal() }
-        { this.renderRequestConfirmationModal() }
-        { this.renderPleaseWaitModal() }
-        { this.renderErrorModal() }
-        { this.renderProductInfoModal() }
+          { this.renderRequestModal() }
+          { this.renderRequestConfirmationModal() }
+          { this.renderPleaseWaitModal() }
+          { this.renderErrorModal() }
+          { this.renderProductInfoModal() }
 
-        <Footer brandName={this.state.business.title}
-          facebookUrl={this.state.business.facebookUrl}
-          twitterUrl={this.state.business.twitterUrl}
-          skype={this.state.business.skype}
-          whatsup={this.state.business.whatsup}
-          email={this.state.business.emailAddress}
-          phone1={this.state.business.phoneNumber}
-          phone2={this.state.business.phoneNumberOptional}
-          address={this.state.business.address} />
+          <Footer brandName={this.state.business.title}
+            facebookUrl={this.state.business.facebookUrl}
+            twitterUrl={this.state.business.twitterUrl}
+            skype={this.state.business.skype}
+            whatsup={this.state.business.whatsup}
+            email={this.state.business.emailAddress}
+            phone1={this.state.business.phoneNumber}
+            phone2={this.state.business.phoneNumberOptional}
+            address={this.state.business.address} />
 
-      </Page>
+        </Page>
+      </Universe>
     );
   }
 

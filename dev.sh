@@ -10,7 +10,7 @@ DIR_FONTS=fonts
 
 RESOURCES=resources
 
-export NODE_ENV=production
+export NODE_ENV=development
 export CONTENTFUL_SPACE=le2r9m8siffu
 export CONTENTFUL_ACCESS_TOKEN=87cc9575c510bdf64212f7f3e21181d84dc8243fdfd75bf23949375aeb519dc8
 export MESSAGE_SERVICE=http://nuevasaventuras.es:8095/email/send
@@ -18,7 +18,7 @@ export MESSAGE_SERVICE=http://nuevasaventuras.es:8095/email/send
 if [ -d "$DIST" ]; then rm -Rf $DIST; fi
 
 npm run lint
-webpack -p --bail
+webpack --config webpack.config.dev.js --bail
 
 # RESOURCES
 cp -r $SOURCE/$DIR_SASS $DIST/$DIR_CSS

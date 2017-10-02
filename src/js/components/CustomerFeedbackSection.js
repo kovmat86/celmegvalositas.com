@@ -1,5 +1,6 @@
 import React from 'react';
 import CustomerFeedback from './CustomerFeedback';
+import { HorizontalSplit } from 'neal-react';
 
 class CustomerFeedbackSection extends React.Component {
 

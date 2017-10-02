@@ -1,12 +1,71 @@
+.scroll-down {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: $nav-bg-color;
+    padding: 10px;
+    z-index: 99;
+    margin-top: 0;
+    transition: all .4s ease;
+}
 
-.neal-navbar {
+ul.scroll-nav {
 
-  .navbar-brand {
-    float: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  li {
+
+    padding-top: 10px;
+
+    a {
+      color: $nav-color;
+      cursor: pointer;
+      padding: 0 15px;
+      font-size: 12px;
+      font-family: Open Sans,sans-serif;
+      font-weight: 400;
+      text-transform: uppercase;
+      display: inline-block;
+      position: relative;
+
+      &.sdm-active {
+        background: $nav-bg-color-inverse;
+        color: $nav-color-inverse ;
+        height: 20px;
+        border-radius: 5px;
+        animation: grow .25s ease;
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    
+    &.active {
+      a {
+        background: transparent;
+        color: $nav-color-inverse;
+      }
+    }
+
   }
+}
 
-  .neal-footer-social {
-    flex-direction: row;
+.nav-pills {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  li {
+    a {
+      &.programs-btn-active {
+        color: $nav-color;
+        border-bottom: 2px solid $nav-color;
+      }
+    }
   }
 }
 
@@ -44,7 +103,12 @@
   text-align: center;
 }
 
+footer.neal-footer {
+  margin-top: 0;
+}
+
 .neal-footer {
+
   p {
     margin-bottom: 0;
 
