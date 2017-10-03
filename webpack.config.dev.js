@@ -18,10 +18,18 @@ module.exports = {
         loader: 'style!css!sass'
       },
       {
-          test: /\.png$/,
-          loader: "url-loader",
-          query: { mimetype: "image/png" }
-      }      
+        test: /\.css$/,
+        loader: 'style!css'
+      },
+      {
+        test: /\.png$/,
+        loader: 'url-loader',
+        query: { mimetype: "image/png" }
+      },
+      { 
+        test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/, 
+        loader: 'file-loader'
+      }
     ]
   },
   devtool: 'cheap-module-source-map',

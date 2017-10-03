@@ -7,7 +7,7 @@ export default class HeroVideo extends React.Component {
 
   render() {
 
-    const _className = classNames('hero-video jumbotron jumbotron-fluid', this.props.className);
+    const _className = classNames('hero-video', this.props.className);
 
     return (
       <div className={_className}>
