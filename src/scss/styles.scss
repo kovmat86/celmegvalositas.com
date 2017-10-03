@@ -73,6 +73,14 @@ ul.scroll-nav {
 }
 
 /********************************************************
+ *                    UI CONTAINER                      *
+ ********************************************************/
+.neal-section {
+  padding: 10rem 25px;
+  text-align: center;
+}
+
+/********************************************************
  *                    UI ELEMENTS                       *
  ********************************************************/
 .btn {
@@ -209,4 +217,12 @@ footer.neal-footer {
 
 .gold-gradient-bg {
   @include gold-bg();
+}
+
+.gray-bg {
+  background-color: #f1f1f1;
+}
+
+.white-bg {
+  background-color: #fff;
 }

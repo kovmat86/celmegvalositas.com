@@ -185,15 +185,15 @@ export default class Homepage extends React.Component {
             <HeroVideoContent contentProvider={ContentProvider} />
           </HeroVideo>
 
-          <Section>
+          <Section className="gray-bg">
             <WhoWeAre contentProvider={ContentProvider} />
           </Section>
 
-          <Section>
+          <Section className="white-bg">
             <WhyChooseUs />
           </Section>
 
-          <Section>
+          <Section className="gray-bg">
             <HowWeWork />
           </Section>
 
