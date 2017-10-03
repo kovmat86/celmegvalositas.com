@@ -6,6 +6,7 @@
     left: 0;
     right: 0;
     background: $nav-bg-color;
+    box-shadow: 0 0 15px black;
     padding: 10px;
     z-index: 99;
     margin-top: 0;
@@ -20,8 +21,6 @@ ul.scroll-nav {
   flex-wrap: wrap;
   
   li {
-
-    padding-top: 10px;
 
     a {
       color: $nav-color;
@@ -73,43 +72,66 @@ ul.scroll-nav {
 }
 
 /********************************************************
+ *                    UI CONTAINER                      *
+ ********************************************************/
+.neal-section {
+  padding: 10rem 25px;
+  text-align: center;
+}
+
+/********************************************************
  *                    UI ELEMENTS                       *
  ********************************************************/
 .btn {
+  outline: none;  
   cursor: pointer;
+
+  &.outline {
+    background: transparent;
+    border-style: solid;
+    border-width: 2px;
+    transition: all 0.2s linear;
+    a {
+      text-decoration: none;
+    }
+    &.btn-gold {
+      border-color: $color-gold;
+      color: $color-gold;
+    }
+  }
+
+  &.outline:hover {
+      background: #1172c4;
+      border-color: white;
+      color: white;
+      transition: all 0.2s linear;
+  }
+  &.outline:active {
+      border-radius: 22px;
+  }
+
+  &.btn-gold:hover {
+      border-color: transparent;
+      color: white;
+
+      @include gold-bg();
+  }
+
+  &.raised:hover {
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
+  }
+
 }
 
 .btn-gold {
+  border: none;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
+  padding: 25px;
   transition: all 0.3s;
   @include gold-bg();
-
-  &:hover {
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
-  }
 }
-
-.btn-white-outline {
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 30px;
-  color: #fff;
-  font-family: robo-medium;
-  font-size: 15px;
-  margin-bottom: 15px;
-  letter-spacing: .5px;
-  padding: 12px 30px;
-  transition: all 0.3s;
-
-  &:hover {
-    background: #fff;
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
-    color: #FDA10E;
-    transition: all 0.5s;  
-  }
-}
-
 
 
 /********************************************************
@@ -203,10 +225,25 @@ footer.neal-footer {
 }
 
 /********************************************************
- *                    BACKGROUNDS                       *
+ *               COLORS AND BACKGROUNDS                 *
  ********************************************************/
 
+.gold-gradient-color {
+  @include gold-bg();
+ 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s;
+}
 
 .gold-gradient-bg {
   @include gold-bg();
+}
+
+.gray-bg {
+  background-color: #f1f1f1;
+}
+
+.white-bg {
+  background-color: #fff;
 }

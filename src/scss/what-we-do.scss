@@ -1,0 +1,32 @@
+#whatwedo {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.25);
+  max-width: 1000px;
+  padding: 2rem;
+  position: relative;
+  top: -15rem;
+  z-index: 50;
+
+  h2 {
+    border: none;
+    color: $color-blue;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 2rem;
+    margin: auto;
+  }
+
+  p {
+    color: $color-grey;
+    margin-bottom: 1rem;
+    line-height: 2;
+    padding: 0 5rem 1rem;
+    margin: auto;
+  }
+
+  .what-we-do-icon {
+    color: $color-gold;
+  }
+
+}

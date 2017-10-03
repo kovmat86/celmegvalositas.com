@@ -1,21 +1,19 @@
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
 
 class WhoWeAre extends React.Component {
 
-  static propTypes = {
-    contentProvider: React.PropTypes.object.isRequired,
-  };
-
   constructor(props) {
     super(props);
-    this.state = this.props.contentProvider.get('whoAreWe') || {};
+    this.state = this.props.contentProvider.get('whoWeAre') || {};
   }
 
   render() {
     return (
       <div id="whoweare" className="who-we-are-container">
-        <h2>{this.state.title}</h2>
-        <p>{this.state.text}</p>
+        <h2 className="gold-gradient-color viewport-animation animated fadeInUp">{this.state.title}</h2>
+        <ReactMarkdown source={this.state.text} className="viewport-animation animated fadeInUp delay-250" />
+        <button aria-label={this.state.ctaLabel} className="btn outline btn-gold btn-block viewport-animation animated fadeInUp delay-500">{this.state.ctaLabel}</button>
       </div>
     );
   }
