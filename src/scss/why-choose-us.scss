@@ -1,0 +1,47 @@
+#whychooseus {
+  max-width: 1000px;
+
+  h2 {
+    color: $color-blue;
+    border: none;
+    font-size: 35px;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: $color-grey;
+    font-size: 1.25rem;    
+    line-height: 2rem;
+  }
+
+  ul {
+    
+    list-style: none;
+
+    li {
+      background-color: white;
+      border-radius: 10px;
+      max-width: 300px;
+      padding: 1.5rem;
+      margin: 1rem auto 0;
+      text-align: left;
+
+      span {
+        color: $color-grey;
+        font-size: 16px;
+        text-transform: uppercase;
+
+        &.why-choose-us-icon { 
+          color: $color-gold;
+          font-size: 30px;
+          margin-right: 25px; 
+        }
+
+      }
+
+    }
+
+  }
+
+}
+

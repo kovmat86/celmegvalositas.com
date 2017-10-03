@@ -191,8 +191,8 @@ export default class Homepage extends React.Component {
             <WhoWeAre contentProvider={ContentProvider} />
           </Section>
 
-          <Section className="white-bg">
-            <WhyChooseUs />
+          <Section className="transparent-bg">
+            <WhyChooseUs contentProvider={ContentProvider} />
           </Section>
 
           <Section className="gray-bg">
@@ -200,6 +200,8 @@ export default class Homepage extends React.Component {
           </Section>
 
           <WhereWeAre />
+
+          <Section className="gold-gradient-bg" />
 
           { this.renderRequestModal() }
           { this.renderRequestConfirmationModal() }

@@ -9,6 +9,12 @@
     text-transform: uppercase;
   }
 
+  p {
+    color: $color-grey;
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+
   button {
     margin: 50px auto;
     width: 250px;
