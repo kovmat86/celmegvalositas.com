@@ -10,6 +10,7 @@
 
   h1 {
     font-size: 50px;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.25);
   }
 
   p {
@@ -34,7 +35,7 @@
 
 
   h3 {
-    color: #174583;
+    color: $color-blue;
     font-size: 20px;
     font-weight: bold;
     margin: 0 15px 0;
@@ -69,10 +70,8 @@
   }
 
   input[type=submit] {
-    border-radius: 5px;
     float: right;
     margin: 25px 25px 0 0;
-    padding: 25px;
     width: 50%;
   }
 

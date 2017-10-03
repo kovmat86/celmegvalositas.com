@@ -13,7 +13,8 @@ import ErrorModal from '../components/ErrorModal';
 import ProductInfoModal from '../components/ProductInfoModal';
 import NavigationHeader from '../components/NavigationHeader';
 import WhereWeAre from '../components/WhereWeAre';
-import WhoWeAre from '../components/WhoWeAre'; 
+import WhoWeAre from '../components/WhoWeAre';
+import WhatWeDo from '../components/WhatWeDo';
 import WhyChooseUs from '../components/WhyChooseUs';
 import HowWeWork from '../components/HowWeWork';
 
@@ -186,6 +187,7 @@ export default class Homepage extends React.Component {
           </HeroVideo>
 
           <Section className="gray-bg">
+            <WhatWeDo contentProvider={ContentProvider} />
             <WhoWeAre contentProvider={ContentProvider} />
           </Section>
 

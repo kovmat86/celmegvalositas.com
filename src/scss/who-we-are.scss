@@ -1,0 +1,27 @@
+#whoweare {
+
+  margin: -9rem auto;
+  max-width: 800px;
+
+  h2 {
+    border: none;
+    font-size: 35px;
+    text-transform: uppercase;
+  }
+
+  button {
+    border: none;
+    margin: 50px auto;
+    width: 250px;
+
+    div {
+      background: transparent;
+      transition: 0.5s all;
+
+      &:hover {
+        @include gold-bg();
+      }
+    }
+  }
+
+}

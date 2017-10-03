@@ -6,6 +6,7 @@
     left: 0;
     right: 0;
     background: $nav-bg-color;
+    box-shadow: 0 0 15px black;
     padding: 10px;
     z-index: 99;
     margin-top: 0;
@@ -20,8 +21,6 @@ ul.scroll-nav {
   flex-wrap: wrap;
   
   li {
-
-    padding-top: 10px;
 
     a {
       color: $nav-color;
@@ -88,8 +87,12 @@ ul.scroll-nav {
 }
 
 .btn-gold {
+  border: none;
+  border-radius: 5px;
   color: white;
   font-weight: bold;
+  outline: none;
+  padding: 25px;
   transition: all 0.3s;
   @include gold-bg();
 
@@ -117,8 +120,6 @@ ul.scroll-nav {
     transition: all 0.5s;  
   }
 }
-
-
 
 /********************************************************
  *                      FOOTER                          *
@@ -211,9 +212,16 @@ footer.neal-footer {
 }
 
 /********************************************************
- *                    BACKGROUNDS                       *
+ *               COLORS AND BACKGROUNDS                 *
  ********************************************************/
 
+.gold-gradient-color {
+  @include gold-bg();
+ 
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s;
+}
 
 .gold-gradient-bg {
   @include gold-bg();
