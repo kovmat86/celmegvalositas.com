@@ -9,6 +9,8 @@
   }
 
   p {
+    color: $color-grey;
+    font-size: 1.25rem;    
     line-height: 2rem;
   }
 
@@ -17,19 +19,23 @@
     list-style: none;
 
     li {
-      background-color: rgba(255, 255, 255, 0.75);
+      background-color: white;
       border-radius: 10px;
-      box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
       max-width: 300px;
-      padding: 2rem;
-      margin: 2rem auto 0;
+      padding: 1.5rem;
+      margin: 1rem auto 0;
+      text-align: left;
 
-      h1 {
-        color: $color-gray;
+      span {
+        color: $color-grey;
+        font-size: 16px;
         text-transform: uppercase;
-      }
 
-      p {
+        &.why-choose-us-icon { 
+          color: $color-gold;
+          font-size: 30px;
+          margin-right: 25px; 
+        }
 
       }
 
@@ -38,3 +44,4 @@
   }
 
 }
+
