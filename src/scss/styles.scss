@@ -1,3 +1,6 @@
+/********************************************************
+ *                    NAVIGATION                        *
+ ********************************************************/
 .scroll-down {
     position: fixed;
     left: 0;
@@ -69,39 +72,49 @@ ul.scroll-nav {
   }
 }
 
-.subhero {
-  text-align: center;
-  h3 {
-    line-height: 2.5;
-  }
-}
-
+/********************************************************
+ *                    UI ELEMENTS                       *
+ ********************************************************/
 .btn {
   cursor: pointer;
 }
 
-.neal-section {
+.btn-gold {
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s;
+  @include gold-bg();
 
-  ul {
-
-    margin: 0;
-    
-    li {
-      margin: 0;
-    }
-
+  &:hover {
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
   }
-
-  &.inline-cta {
-    padding: 2rem;
-    text-align: center;
-  }
-
 }
 
-.neal-pricing-plan-action {
-  text-align: center;
+.btn-white-outline {
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 30px;
+  color: #fff;
+  font-family: robo-medium;
+  font-size: 15px;
+  margin-bottom: 15px;
+  letter-spacing: .5px;
+  padding: 12px 30px;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #fff;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
+    color: #FDA10E;
+    transition: all 0.5s;  
+  }
 }
+
+
+
+/********************************************************
+ *                      FOOTER                          *
+ ********************************************************/
 
 footer.neal-footer {
   margin-top: 0;
@@ -129,20 +142,10 @@ footer.neal-footer {
 
 }
 
-.who-why-how {
 
-  p {
-    text-align: justify;
-  }
-
-  .girl,
-  .like,
-  .skype {
-    @include transform( scale(0.5) );
-    @include transform-origin(left);
-  }
-}
-
+/********************************************************
+ *                        MODALS                        *
+ ********************************************************/
 .neal-signup-modal {
 
   .modal-body {
@@ -199,38 +202,11 @@ footer.neal-footer {
 
 }
 
+/********************************************************
+ *                    BACKGROUNDS                       *
+ ********************************************************/
+
+
 .gold-gradient-bg {
   @include gold-bg();
 }
-
-.btn-gold {
-  color: white;
-  font-weight: bold;
-  transition: all 0.3s;
-  @include gold-bg();
-
-  &:hover {
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
-  }
-}
-
-.btn-white-outline {
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 30px;
-  color: #fff;
-  font-family: robo-medium;
-  font-size: 15px;
-  margin-bottom: 15px;
-  letter-spacing: .5px;
-  padding: 12px 30px;
-  transition: all 0.3s;
-
-  &:hover {
-    background: #fff;
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
-    color: #FDA10E;
-    transition: all 0.5s;  
-  }
-}
-
