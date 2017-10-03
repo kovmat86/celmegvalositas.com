@@ -199,6 +199,38 @@ footer.neal-footer {
 
 }
 
-.skype.neal-footer-social-icon i.fa-stack-2x { color: #12A5F4; }
-.whatsapp.neal-footer-social-icon i.fa-stack-2x { color: #25D366; }
-.google.neal-footer-social-icon i.fa-stack-2x { color: #d34836; }
+.gold-gradient-bg {
+  @include gold-bg();
+}
+
+.btn-gold {
+  color: white;
+  font-weight: bold;
+  transition: all 0.3s;
+  @include gold-bg();
+
+  &:hover {
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
+  }
+}
+
+.btn-white-outline {
+  background: transparent;
+  border: 2px solid #fff;
+  border-radius: 30px;
+  color: #fff;
+  font-family: robo-medium;
+  font-size: 15px;
+  margin-bottom: 15px;
+  letter-spacing: .5px;
+  padding: 12px 30px;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #fff;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
+    color: #FDA10E;
+    transition: all 0.5s;  
+  }
+}
+

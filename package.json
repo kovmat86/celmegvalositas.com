@@ -43,6 +43,7 @@
     "pug-loader": "^2.3.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
+    "react-fa": "^5.0.0",
     "react-html5video": "^1.4.0",
     "react-router": "^3.0.0",
     "sass-loader": "^4.1.1",
@@ -56,6 +57,7 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
+    "file-loader": "^1.1.4",
     "ftp-deploy": "^1.2.2",
     "minimist": "^1.2.0",
     "react-async-script-loader": "^0.3.0"
