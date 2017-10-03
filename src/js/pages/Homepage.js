@@ -192,7 +192,7 @@ export default class Homepage extends React.Component {
           </Section>
 
           <Section className="white-bg">
-            <WhyChooseUs />
+            <WhyChooseUs contentProvider={ContentProvider} />
           </Section>
 
           <Section className="gray-bg">
