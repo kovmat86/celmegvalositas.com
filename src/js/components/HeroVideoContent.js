@@ -50,7 +50,7 @@ export default class HeroVideo extends React.Component {
                 </div>
                 <div className="form-group row">
                   <div className="col pull-right">
-                    <input aria-label={this.state.formCtaLable} className="btn btn-gold btn-block" type="submit" value={this.state.formCtaLabel} />
+                    <input aria-label={this.state.formCtaLable} className="btn btn-gold raised btn-block" type="submit" value={this.state.formCtaLabel} />
                   </div>
                 </div>
               </form>

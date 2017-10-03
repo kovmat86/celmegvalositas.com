@@ -83,43 +83,56 @@ ul.scroll-nav {
  *                    UI ELEMENTS                       *
  ********************************************************/
 .btn {
+  outline: none;  
   cursor: pointer;
+
+  &.outline {
+    background: transparent;
+    border-style: solid;
+    border-width: 2px;
+    transition: all 0.2s linear;
+    a {
+      text-decoration: none;
+    }
+    &.btn-gold {
+      border-color: $color-gold;
+      color: $color-gold;
+    }
+  }
+
+  &.outline:hover {
+      background: #1172c4;
+      border-color: white;
+      color: white;
+      transition: all 0.2s linear;
+  }
+  &.outline:active {
+      border-radius: 22px;
+  }
+
+  &.btn-gold:hover {
+      border-color: transparent;
+      color: white;
+
+      @include gold-bg();
+  }
+
+  &.raised:hover {
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
+  }
+
 }
 
 .btn-gold {
   border: none;
-  border-radius: 5px;
+  border-radius: 10px;
   color: white;
   font-weight: bold;
-  outline: none;
   padding: 25px;
   transition: all 0.3s;
   @include gold-bg();
-
-  &:hover {
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
-  }
 }
 
-.btn-white-outline {
-  background: transparent;
-  border: 2px solid #fff;
-  border-radius: 30px;
-  color: #fff;
-  font-family: robo-medium;
-  font-size: 15px;
-  margin-bottom: 15px;
-  letter-spacing: .5px;
-  padding: 12px 30px;
-  transition: all 0.3s;
-
-  &:hover {
-    background: #fff;
-    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
-    color: #FDA10E;
-    transition: all 0.5s;  
-  }
-}
 
 /********************************************************
  *                      FOOTER                          *
