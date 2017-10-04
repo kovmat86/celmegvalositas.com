@@ -9,9 +9,6 @@ var production = '/public_html/';
 var staging = '/staging.celmegvalositas.com/';
 var remoteRoot = argv.target === 'production' ? production : staging;
 
-console.log(argv);
-return;
-
 var config = {
   username: process.env.CELMEGVALOSITAS_FTP_USERNAME,
   password: process.env.CELMEGVALOSITAS_FTP_PASSWORD,
