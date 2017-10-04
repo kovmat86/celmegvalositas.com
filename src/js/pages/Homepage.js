@@ -196,7 +196,7 @@ export default class Homepage extends React.Component {
           </Section>
 
           <Section className="gray-bg">
-            <HowWeWork />
+            <HowWeWork contentProvider={ContentProvider} />
           </Section>
 
           <WhereWeAre />

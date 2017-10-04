@@ -5,7 +5,6 @@ class NavigationHeader extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.props.contentProvider.get('navigation') || {};
-    console.log(this.state);
   }
 
   renderMenuItems() {
