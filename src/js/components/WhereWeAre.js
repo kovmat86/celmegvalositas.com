@@ -28,9 +28,17 @@ class WhereWeAre extends Component {
   }
 
   initMap() {
+    const pos = {
+      lat: this.props.lat || 66,
+      lng: this.props.lng || -66
+    };
     const map = new window.google.maps.Map(document.getElementById(this.id), {
-      center: {lat: -34.397, lng: 150.644},
-      zoom: 8
+      center: pos,      
+      zoom: 16
+    });
+    return new window.google.maps.Marker({
+      position: pos,
+      map: map
     });
   }
 

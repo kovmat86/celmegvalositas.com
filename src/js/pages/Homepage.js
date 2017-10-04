@@ -200,7 +200,9 @@ export default class Homepage extends React.Component {
             <HowWeWork contentProvider={ContentProvider} />
           </Section>
 
-          <WhereWeAre />
+          <WhereWeAre 
+            lng={this.state.business.officeLng} 
+            lat={this.state.business.officeLat} />
 
           <Section className="gold-gradient-bg thinner">
             <HeroFooter contentProvider={ContentProvider} />
