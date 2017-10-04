@@ -23,7 +23,7 @@ export class Footer extends React.Component {
               </p>
               { this.renderBusinessDetails(this.props.phone1, 'phone') }
               { this.renderBusinessDetails(this.props.whatsup, 'whatsapp') }
-              { this.renderBusinessDetails(this.props.phone2, 'phone2') }
+              { this.renderBusinessDetails(this.props.phone2, 'phone') }
               { this.renderBusinessDetails(this.props.skype, 'skype') }
               { this.renderBusinessDetails(this.props.email, 'google', `mailto:${this.props.email}`) }
               { this.renderBusinessDetails(this.props.address, 'map-marker') }              
@@ -62,7 +62,6 @@ export class Footer extends React.Component {
         { this.renderSocialIcon('fa-facebook', this.props.facebookUrl) }
         { this.renderSocialIcon('fa-skype', this.props.skype) }
 				{ this.renderSocialIcon('fa-whatsapp', this.props.whatsup) }
-				{ this.renderSocialIcon('fa-google', this.props.email) }
       </ul>
     );
   }

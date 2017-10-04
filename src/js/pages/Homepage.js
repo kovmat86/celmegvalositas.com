@@ -17,6 +17,7 @@ import WhoWeAre from '../components/WhoWeAre';
 import WhatWeDo from '../components/WhatWeDo';
 import WhyChooseUs from '../components/WhyChooseUs';
 import HowWeWork from '../components/HowWeWork';
+import HeroFooter from '../components/HeroFooter';
 
 const heroVideo = {
   poster: '/resources/images/first-frame-hero.jpg',
@@ -199,9 +200,13 @@ export default class Homepage extends React.Component {
             <HowWeWork contentProvider={ContentProvider} />
           </Section>
 
-          <WhereWeAre />
+          <WhereWeAre 
+            lng={this.state.business.officeLng} 
+            lat={this.state.business.officeLat} />
 
-          <Section className="gold-gradient-bg" />
+          <Section className="gold-gradient-bg-transparent thinner">
+            <HeroFooter contentProvider={ContentProvider} />
+          </Section>
 
           { this.renderRequestModal() }
           { this.renderRequestConfirmationModal() }
