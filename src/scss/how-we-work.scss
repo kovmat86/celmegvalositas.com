@@ -1,0 +1,93 @@
+#howwework {
+
+  margin: auto;
+  max-width: 800px;
+
+  h2 {
+    border: none;
+    font-size: 35px;
+    text-transform: uppercase;
+  }
+
+  p {
+    color: $color-grey;
+    font-size: 1.25rem;
+    line-height: 2rem;
+  }
+
+  button {
+    margin: 25px auto;
+    max-width: 100%;
+    width: auto;
+  }
+
+  .how-we-work-item {
+    
+    border-radius: 10px;
+    border: 1px solid $color-grey;
+    color: $color-grey;
+    padding: 4rem 1rem 1rem;
+    position: relative;
+    margin: 0 auto 4rem;
+    min-height: 480px;
+    max-width: 260px;
+    text-align: center;
+
+    button {
+      bottom: 0;
+      left: 50%;
+      padding: 15px;
+      position: absolute;
+      @include transform(translateX(-50%));
+    }
+
+    h3 {
+      color: $color-blue;
+      font-size: 20px;
+      margin: 25px auto;
+      line-height: 20px;
+    }
+
+    p {
+      color: $color-blue;
+      font-size: 40px;
+      line-height: 40px;
+    }
+
+    span {
+      font-size: 16px;
+
+      &.order-label {
+        color: $color-grey;
+        font-size: 40px;
+        font-weight: bold;
+        margin: 5px 20px 0 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      &.how-we-work-item-icon { 
+        color: $color-gold;
+        font-size: 60px;
+      }
+
+      &.green-color {
+        color: green;
+        margin-right: 10px;
+      }
+
+    }
+
+    ul { 
+      margin: 0 auto 40px;
+      list-style: none; 
+      padding: 0;
+
+      li { margin: 2px; }
+
+    }
+
+  }
+
+}
