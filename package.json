@@ -6,7 +6,8 @@
   "scripts": {
     "build": "./build.sh",
     "dev": "./dev.sh",
-    "deploy": "./deploy.sh",
+    "deploy": "node ./scripts/deploy --target=production",
+    "deploy-staging": "node ./scripts/deploy",
     "lint": "eslint src/js/**/*.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "cd node_modules/neal-react && npm install",
