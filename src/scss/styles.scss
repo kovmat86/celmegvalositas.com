@@ -79,12 +79,20 @@ ul.scroll-nav {
   text-align: center;
 }
 
+.neal-section.thinner {
+  padding: 4rem;
+}
+
 /********************************************************
  *                    UI ELEMENTS                       *
  ********************************************************/
 .btn {
-  outline: none;  
+  border-radius: 10px;
   cursor: pointer;
+  font-weight: normal;
+  outline: none;  
+  padding: 25px;
+  transition: all 0.3s;
 
   &.outline {
     background: transparent;
@@ -98,23 +106,31 @@ ul.scroll-nav {
       border-color: $color-gold;
       color: $color-gold;
     }
+    &.btn-white {
+      border-color: white;
+      color: white;
+    }    
   }
 
   &.outline:hover {
-      background: #1172c4;
-      border-color: white;
-      color: white;
-      transition: all 0.2s linear;
+    background: #1172c4;
+    border-color: white;
+    color: white;
+    transition: all 0.2s linear;
   }
   &.outline:active {
-      border-radius: 22px;
+    border-radius: 22px;
   }
-
   &.btn-gold:hover {
-      border-color: transparent;
-      color: white;
+    border-color: transparent;
+    color: white;
 
-      @include gold-bg();
+    @include gold-bg();
+  }
+  &.btn-white:hover {
+    background-color: white;
+    border-color: white;
+    color: $color-gold;
   }
 
   &.raised:hover {
@@ -125,11 +141,7 @@ ul.scroll-nav {
 
 .btn-gold {
   border: none;
-  border-radius: 10px;
   color: white;
-  font-weight: normal;
-  padding: 25px;
-  transition: all 0.3s;
   @include gold-bg();
 }
 
