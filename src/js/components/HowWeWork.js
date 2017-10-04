@@ -32,8 +32,9 @@ class HowWeWork extends React.Component {
       if (item.ctaLabel) {
         button = <button aria-label="text" className="btn outline btn-gold btn-block">{item.ctaLabel}</button>;
       }
+      const delay = `delay-${(idx + 1) * 250}`;
       return (
-        <div key={idx} className="col-xs-12 col-md-4 viewport-animation animated fadeInUp delay-250">
+        <div key={idx} className={classNames('col-xs-12 col-md-4 viewport-animation animated fadeInUp', delay)}>
           <div className="how-we-work-item">
             <span className="order-label">{(idx + 1)}</span>
             <Icon name={item.faIconName} className="how-we-work-item-icon" />
