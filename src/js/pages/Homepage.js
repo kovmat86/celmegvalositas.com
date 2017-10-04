@@ -204,7 +204,7 @@ export default class Homepage extends React.Component {
             lng={this.state.business.officeLng} 
             lat={this.state.business.officeLat} />
 
-          <Section className="gold-gradient-bg thinner">
+          <Section className="gold-gradient-bg-transparent thinner">
             <HeroFooter contentProvider={ContentProvider} />
           </Section>
 
