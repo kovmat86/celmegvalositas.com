@@ -18,6 +18,7 @@ import WhatWeDo from '../components/WhatWeDo';
 import WhyChooseUs from '../components/WhyChooseUs';
 import HowWeWork from '../components/HowWeWork';
 import HeroFooter from '../components/HeroFooter';
+import RequestModal from '../components/RequestModal';
 
 const heroVideo = {
   poster: '/resources/images/first-frame-hero.jpg',
@@ -39,98 +40,7 @@ export default class Homepage extends React.Component {
     };
   }
 
-  renderRequestModal() {
 
-    const modalId = 'request-appointment-modal';
-    const messageServiceUrl = process.env.MESSAGE_SERVICE;
-    const content = this.state.homepage.requestAppointmentModal || {};
-
-    function onSendRequest() {
-      Promise
-        .resolve()
-        .then(emitSubmitEvent)
-        .then(hide.bind(null, 'request-appointment-modal'))
-        .then(show.bind(null, 'please-wait-modal'))
-        .then(sendFormDataToMessageService)
-        .then(hide.bind(null, 'please-wait-modal'))
-        .then(happyPath)
-        .catch(sadPath);
-    }
-
-    function emitSubmitEvent() {
-      $(document).trigger('request/submit');
-    }
-
-    function hide(modalId) {
-      const $modal = $(`#${modalId}`);
-      return new Promise(resolve => {
-        $modal.one('hidden.bs.modal', () => {
-          resolve();
-        });
-        $modal.modal('hide');
-      });
-    }
-
-    function show(modalId) {
-      const $modal = $(`#${modalId}`);
-      return new Promise(resolve => {
-        $modal.one('shown.bs.modal', () => {
-          resolve();
-        });
-        $modal.modal('show');
-      });      
-    }
-
-    function sendFormDataToMessageService() {
-      const $form = $(`#${modalId} form`);
-      const json = JSON.stringify(serializeFormData($form));
-      return new Promise((resolve, reject) => {
-        $.ajax({
-          method: 'POST',
-          contentType: 'application/json',
-          dataType: 'json',
-          data: json,
-          url: messageServiceUrl,
-          success: resolve,
-          error: reject
-        });
-      });
-    }
-
-    function serializeFormData($form) {
-      if (!$form) throw 'Invalid input!';
-      return $form.serializeArray().reduce((m, o) => { 
-        m[o.name] = o.value; 
-        return m;
-      }, {});
-    }
-
-    function happyPath() {
-      $(document).trigger('request/submit/happy-path');
-      return show('request-confirmation-modal');
-    }
-
-    function sadPath() {
-      $(document).trigger('request/submit/sad-path');
-      return hide('please-wait-modal')
-        .then(show.bind(null, 'error-modal'));
-    }
-
-    return (
-      <SignupModal title={content.title} buttonText={content.buttonLabel} modalId={modalId} onSubmit={onSendRequest}>
-        <div>
-          <p>
-            {content.description}
-          </p>
-        </div>
-        <div>
-          <SignupModal.Input name="name" required label={content.name} placeholder={content.name} />
-          <SignupModal.Input name="age" required label="Age" placeholder={content.age} />
-          <SignupModal.Input type="email" required name="email" label={content.email} placeholder={content.email} />
-        </div>
-      </SignupModal>
-    );
-  }
 
   renderRequestConfirmationModal() {
     let content;
@@ -208,7 +118,7 @@ export default class Homepage extends React.Component {
             <HeroFooter contentProvider={ContentProvider} />
           </Section>
 
-          { this.renderRequestModal() }
+          <RequestModal contentProvider={ContentProvider} />
           { this.renderRequestConfirmationModal() }
           { this.renderPleaseWaitModal() }
           { this.renderErrorModal() }
