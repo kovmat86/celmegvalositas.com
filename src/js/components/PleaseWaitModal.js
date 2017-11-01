@@ -4,7 +4,7 @@ export default class PleaseWaitModal extends React.Component {
 
   static propTypes = {
     title: React.PropTypes.string.isRequired,
-    modelId: React.PropTypes.string.isRequired,
+    modalId: React.PropTypes.string.isRequired,
   }
 
   static defaultProps = {

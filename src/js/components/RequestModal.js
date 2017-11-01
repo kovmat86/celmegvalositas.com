@@ -1,10 +1,18 @@
+/* global $ */
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import { Icon } from 'react-fa';
+import { SignupModal } from 'neal-react';
 
 const modalId = 'request-appointment-modal';
-const pleaseWaitId= 'please-wait-modal';
+const pleaseWaitId = 'please-wait-modal';
 const messageServiceUrl = process.env.MESSAGE_SERVICE;
+
+function serializeFormData($form) {
+  if (!$form) throw 'Invalid input!';
+  return $form.serializeArray().reduce((m, o) => { 
+    m[o.name] = o.value; 
+    return m;
+  }, {});
+}
 
 class RequestModal extends React.Component {
 
@@ -22,7 +30,7 @@ class RequestModal extends React.Component {
       .then(this.sendFormDataToMessageService.bind(this))
       .then(this.hide.bind(this, pleaseWaitId))
       .then(this.happyPath.bind(this))
-      .catch(sadPath);
+      .catch(this.sadPath.bind(this));
   }
 
   emitSubmitEvent() {
@@ -55,7 +63,7 @@ class RequestModal extends React.Component {
     return new Promise((resolve, reject) => {
       $.ajax({
         method: 'POST',
-        this.stateType: 'application/json',
+        contentType: 'application/json',
         dataType: 'json',
         data: json,
         url: messageServiceUrl,
@@ -80,7 +88,7 @@ class RequestModal extends React.Component {
 
   sadPath() {
     $(document).trigger('request/submit/sad-path');
-    return hide(pleaseWaitId)
+    return this.hide(pleaseWaitId)
       .then(this.show.bind(this, 'error-modal'));
   } 
 

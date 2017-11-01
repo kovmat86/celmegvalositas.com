@@ -23,7 +23,7 @@ import RequestModal from '../components/RequestModal';
 const heroVideo = {
   poster: '/resources/images/first-frame-hero.jpg',
   source: {
-    url: '/resources/videos/shutterstock_v17053459.m4v',
+    url: '/resources/videos/background-video.mp4',
     type: 'video/mp4'
   }
 };

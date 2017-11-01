@@ -5,7 +5,7 @@ export default class ErrorModal extends React.Component {
   static propTypes = {
     title: React.PropTypes.string.isRequired,
     text: React.PropTypes.string.isRequired,
-    modelId: React.PropTypes.string.isRequired
+    modalId: React.PropTypes.string.isRequired
   }
 
   static defaultProps = {

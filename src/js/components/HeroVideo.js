@@ -10,7 +10,7 @@ export default class HeroVideo extends React.Component {
     const _className = classNames('hero-video', this.props.className);
 
     return (
-      <div className={_className}>
+      <div className={_className} id="home">
         <Video autoPlay loop muted poster={ this.props.poster }>
           <source src={ this.props.source.url } type={ this.props.source.type } />
           <h1>Optional HTML and components can be added also</h1>
