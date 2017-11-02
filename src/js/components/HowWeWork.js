@@ -43,7 +43,7 @@ class HowWeWork extends React.Component {
             <p className="price">{item.Price}</p>
             <p className="length">{item.length}</p>
             <p>{item.text}</p>
-            <h5>Mi történik ebben a fázisban</h5>
+            <h5>{item.whatHappensTitle}</h5>
             <p>{item.activityDescription}</p>
             {button}
           </div>
