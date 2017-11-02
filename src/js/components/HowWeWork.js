@@ -33,31 +33,23 @@ class HowWeWork extends React.Component {
         button = <button aria-label="text" className="btn outline btn-gold btn-block">{item.ctaLabel}</button>;
       }
       const delay = `delay-${(idx + 1) * 250}`;
+      
       return (
-        <div key={idx} className={classNames('col-xs-12 col-md-4 viewport-animation animated fadeInUp', delay)}>
+        <div key={idx} className={classNames('col-xs-12 col-md-6 viewport-animation animated fadeIn', delay)}>
           <div className="how-we-work-item">
             <span className="order-label">{(idx + 1)}</span>
             <Icon name={item.faIconName} className="how-we-work-item-icon" />
             <h3>{item.title}</h3>
             <p className="price">{item.Price}</p>
-            {this.renderHowWeWorkItemList(item.items)}
+            <p className="length">{item.length}</p>
+            <p>{item.text}</p>
+            <h5>Mi történik ebben a fázisban</h5>
+            <p>{item.activityDescription}</p>
             {button}
           </div>
         </div>
       );
     });
-  }
-
-  renderHowWeWorkItemList(list) {
-    if (!list) return null;
-    const liElms = list.map((item, idx) => (
-      <li key={idx}><Icon name="check" className="green-color" /><span>{item}</span></li>
-    ));
-    return (
-      <ul>
-        {liElms}
-      </ul>
-    );
   }
 
 }
