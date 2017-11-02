@@ -3,6 +3,15 @@
   max-width: 1000px;
 }
 
+.logo-container {
+  text-align: center;
+  img {
+    width: 25%;
+    min-height: auto;
+    margin: 0 auto 5rem;
+  }
+}
+
 
 #mission-statement-container {
   margin-left: 35px;

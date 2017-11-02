@@ -21,6 +21,9 @@ export default class HeroVideo extends React.Component {
     return (
       <div className={_className}>
         <div className="row">
+          <div className="col-xs-12 col-md-12 logo-container animated fadeIn">
+            <img src="resources/images/logo-min.png" alt="logo" />
+          </div>
           <div className="col-xs-12 col-md-6">
             <div id="mission-statement-container">
               <h1 className="animated fadeInDown">{this.state.missionStatement}</h1>
