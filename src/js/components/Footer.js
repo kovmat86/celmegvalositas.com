@@ -14,7 +14,7 @@ export class Footer extends React.Component {
 
   render() {
     return (
-      <footer className="neal-footer navbar">
+      <footer className="neal-footer navbar" id="contact">
         <Container>
           <Row>
             <Col size={['xs-12', 'md-8']}>
