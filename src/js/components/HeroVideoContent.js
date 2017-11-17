@@ -32,7 +32,11 @@ export default class HeroVideo extends React.Component {
             </div>
           </div>
           <div className="col-xs-12 col-md-6">
-            <PhoneBackForm title={this.state.formTitle} subtitle={this.state.formSubtitle} />
+            <div className="container animated fadeIn consultation-container">
+              <h3>{this.state.formTitle}</h3>
+              <p>{this.state.formSubtitle}</p>
+              <PhoneBackForm id="hero-video-form" ctaLabel={this.state.formCtaLabel} />
+            </div>
           </div>
         </div>
       </div>      

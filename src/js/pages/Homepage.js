@@ -3,7 +3,7 @@ import React from 'react';
 import { Page, Section, SignupModal } from 'neal-react';
 import Universe from '../components/Universe';
 import { ContentProvider } from '../components/ContentProvider';
-import GoogleAnalytics, { trackProductEvent, trackSubmitSuccess, trackSubmitFailure, trackSubmitEvent, trackOpenRequestModal } from '../components/GoogleAnalytics';
+import GoogleAnalytics from '../components/GoogleAnalytics';
 import HeroVideo from '../components/HeroVideo';
 import HeroVideoContent from '../components/HeroVideoContent';
 import CustomerFeedbackSection from '../components/CustomerFeedbackSection';
@@ -39,8 +39,6 @@ export default class Homepage extends React.Component {
       defaultErrorModal: ContentProvider.get('defaultErrorModal') || {}
     };
   }
-
-
 
   renderRequestConfirmationModal() {
     let content;
