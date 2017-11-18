@@ -31,7 +31,7 @@ class HowWeWork extends React.Component {
     return items.map((item, idx) => {
       let button; 
       if (item.ctaLabel) {
-        const onClick = item.ctaCode ? showModal(item.ctaCode) : (() => {});
+        const onClick = item.ctaCode ? showModal.bind(this, item.ctaCode) : (() => {});
         button = <button 
           aria-label="text" 
           className="btn outline btn-gold btn-block" 

@@ -11,7 +11,7 @@ class PleaseWaitModal extends React.Component {
   }
 
   static defaultProps = {
-    title: 'Please wait',
+    title: 'Kérjük várjon',
     modalId: 'please-wait-modal'
   };
 
@@ -37,12 +37,13 @@ class PleaseWaitModal extends React.Component {
 }
 
 function showPleaseWaitModal() {
-  showModal(modalId);
+  return showModal(modalId);
 }
 
 function hidePleaseWaitModal() {
-  hideModal(modalId);
+  return hideModal(modalId);
 }
+
 
 export { showPleaseWaitModal, hidePleaseWaitModal };
 export default PleaseWaitModal;

@@ -26,11 +26,11 @@ class ErrorModal extends React.Component {
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
+              <h3 class="modal-title lead">{ this.props.title }</h3>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 <span className="sr-only">Close</span>
               </button>
-              <h3 class="modal-title lead">{ this.props.title }</h3>
             </div>
             <div className="modal-body">
               <p>{ this.props.text }</p>
@@ -46,13 +46,13 @@ class ErrorModal extends React.Component {
 
 }
 
-function showPleaseWaitModal() {
-  showModal(modalId);
+function showErrorModal() {
+  return showModal(modalId);
 }
 
-function hidePleaseWaitModal() {
-  hideModal(modalId);
+function hideErrorModal() {
+  return hideModal(modalId);
 }
 
-export { showPleaseWaitModal, hidePleaseWaitModal };
+export { showErrorModal, hideErrorModal };
 export default ErrorModal;

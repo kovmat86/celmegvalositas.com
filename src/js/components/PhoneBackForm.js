@@ -36,7 +36,9 @@ class PhoneBackForm extends React.Component {
     });
   }
 
-  onClick() {
+  onClick(evt) {
+    evt.preventDefault();
+    
     Promise
       .resolve()
       .then(this.props.onSubmit)
@@ -124,7 +126,8 @@ class PhoneBackForm extends React.Component {
             <input 
               aria-label={this.props.ctaLable} 
               className="btn btn-gold raised btn-block" 
-              type="submit" value={this.props.ctaLabel} 
+              type="submit" 
+              value={this.props.ctaLabel} 
               onClick={this.onClick} />
           </div>
         </div>

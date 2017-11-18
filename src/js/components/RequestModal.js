@@ -22,11 +22,11 @@ class RequestModal extends React.Component {
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
+              <h3>{ this.state.title }</h3>
               <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 <span className="sr-only">Close</span>
-              </button>
-              <h3>{ this.state.title }</h3>
+              </button>              
             </div>
             <div className="modal-body">
               <p>{ this.state.description }</p>
