@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Icon } from 'react-fa';
+import { showModal } from '../helpers/popups';
 
 class HowWeWork extends React.Component {
 
@@ -30,7 +31,11 @@ class HowWeWork extends React.Component {
     return items.map((item, idx) => {
       let button; 
       if (item.ctaLabel) {
-        button = <button aria-label="text" className="btn outline btn-gold btn-block">{item.ctaLabel}</button>;
+        const onClick = item.ctaCode ? showModal(item.ctaCode) : (() => {});
+        button = <button 
+          aria-label="text" 
+          className="btn outline btn-gold btn-block" 
+          onClick={onClick}>{item.ctaLabel}</button>;
       }
       const delay = `delay-${(idx + 1) * 250}`;
       

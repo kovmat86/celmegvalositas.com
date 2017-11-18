@@ -3,7 +3,7 @@ import { showModal, hideModal } from '../helpers/popups';
 
 let modalId;
 
-class ErrorModal extends React.Component {
+class PhoneBackConfirmationModal extends React.Component {
 
   static propTypes = {
     title: React.PropTypes.string.isRequired,
@@ -12,9 +12,9 @@ class ErrorModal extends React.Component {
   }
 
   static defaultProps = {
-    title: 'Az operáció sikertelen',
-    text: 'A szolgaltatás jelenleg nem elérhető. Kérjük problalja meg később!',
-    modalId: 'error-modal',
+    title: 'Visszahívás kérése sikeres volt',
+    text: 'A megjelölt időpontban keresni fogjuk a megadott telefonszámon!',
+    modalId: 'phoneback-confirmation-modal',
     buttonText: 'Rendben'
   };
 
@@ -46,13 +46,13 @@ class ErrorModal extends React.Component {
 
 }
 
-function showPleaseWaitModal() {
+function showPhoneBackConfirmationModal() {
   showModal(modalId);
 }
 
-function hidePleaseWaitModal() {
+function hidePhoneBackConfirmationModal() {
   hideModal(modalId);
 }
 
-export { showPleaseWaitModal, hidePleaseWaitModal };
-export default ErrorModal;
+export { showPhoneBackConfirmationModal, hidePhoneBackConfirmationModal };
+export default PhoneBackConfirmationModal;

@@ -1,6 +1,9 @@
 import React from 'react';
+import { showModal, hideModal } from '../helpers/popups';
 
-export default class PleaseWaitModal extends React.Component {
+let modalId;
+
+class PleaseWaitModal extends React.Component {
 
   static propTypes = {
     title: React.PropTypes.string.isRequired,
@@ -13,7 +16,7 @@ export default class PleaseWaitModal extends React.Component {
   };
 
   render() {
-    const modalId = this.props.modalId;
+    modalId = this.props.modalId;
     return (
       <div className="modal fade neal-signup-modal please-wait-modal" key={modalId} id={modalId}
       tabIndex="-1" role="dialog" aria-hidden="true">
@@ -32,3 +35,14 @@ export default class PleaseWaitModal extends React.Component {
   }
 
 }
+
+function showPleaseWaitModal() {
+  showModal(modalId);
+}
+
+function hidePleaseWaitModal() {
+  hideModal(modalId);
+}
+
+export { showPleaseWaitModal, hidePleaseWaitModal };
+export default PleaseWaitModal;

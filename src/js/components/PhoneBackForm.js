@@ -1,13 +1,25 @@
 /* global $ */
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 import { Icon } from 'react-fa';
+import { showPleaseWaitModal, hidePleaseWaitModal } from './PleaseWaitModal';
+import { showErrorModal } from './ErrorModal';
+import { showPhoneBackConfirmationModal } from './PhoneBackConfirmationModal';
+import { 
+  trackSubmitPhoneBackEvent,
+  trackSubmitPhoneBackEventSuccess,
+  trackSubmitPhoneBackEventFailure
+} from './GoogleAnalytics';
+
+const messageServiceUrl = process.env.MESSAGE_SERVICE;
 
 class PhoneBackForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.id = this.props.id || `from-${Math.random()}`;
+    this.id = this.props.id || `from-${Math.round(Math.random() * 1000)}`;
+    this.onClick = this.onClick.bind(this);
+    this.onSubmit = this.props.onSubmit || (() => {});
+    this.onSuccess = this.props.onSuccess || (() => {});
   }
 
   componentDidMount() {
@@ -23,6 +35,54 @@ class PhoneBackForm extends React.Component {
       scrollbar: true
     });
   }
+
+  onClick() {
+    Promise
+      .resolve()
+      .then(this.props.onSubmit)
+      .then(trackSubmitPhoneBackEvent)
+      .then(showPleaseWaitModal)
+      .then(this.sendFormDataToMessageService.bind(this))
+      .then(hidePleaseWaitModal)
+      .then(this.happyPath.bind(this))
+      .catch(this.sadPath.bind(this));
+  }
+
+  sendFormDataToMessageService() {
+    const $form = $(`#${this.id}`);
+    const json = JSON.stringify(this.serializeFormData($form));
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        method: 'POST',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: json,
+        url: messageServiceUrl,
+        success: resolve,
+        error: reject
+      });
+    });
+  }
+
+  serializeFormData($form) {
+    if (!$form) throw 'Invalid input!';
+    return $form.serializeArray().reduce((m, o) => { 
+      m[o.name] = o.value; 
+      return m;
+    }, {});
+  }
+
+  happyPath() {
+    trackSubmitPhoneBackEventSuccess();
+    showPhoneBackConfirmationModal();
+    this.props.onSuccess();
+  }
+
+  sadPath() {
+    trackSubmitPhoneBackEventFailure();
+    return hidePleaseWaitModal()
+      .then(showErrorModal);
+  }  
 
   render() {
     return (
@@ -61,7 +121,11 @@ class PhoneBackForm extends React.Component {
         </div>                
         <div className="form-group row">
           <div className="col pull-right">
-            <input aria-label={this.props.ctaLable} className="btn btn-gold raised btn-block" type="submit" value={this.props.ctaLabel} />
+            <input 
+              aria-label={this.props.ctaLable} 
+              className="btn btn-gold raised btn-block" 
+              type="submit" value={this.props.ctaLabel} 
+              onClick={this.onClick} />
           </div>
         </div>
       </form>

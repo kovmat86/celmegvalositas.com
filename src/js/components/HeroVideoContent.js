@@ -1,7 +1,6 @@
 'use strict';
 import React from 'react';
 import classNames from 'classnames';
-import { Icon } from 'react-fa';
 import PhoneBackForm from './PhoneBackForm';
 
 export default class HeroVideo extends React.Component {

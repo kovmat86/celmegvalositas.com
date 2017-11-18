@@ -6,11 +6,11 @@ import { ContentProvider } from '../components/ContentProvider';
 import GoogleAnalytics from '../components/GoogleAnalytics';
 import HeroVideo from '../components/HeroVideo';
 import HeroVideoContent from '../components/HeroVideoContent';
-import CustomerFeedbackSection from '../components/CustomerFeedbackSection';
 import { Footer } from '../components/Footer';
 import PleaseWaitModal from '../components/PleaseWaitModal';
 import ErrorModal from '../components/ErrorModal';
 import ProductInfoModal from '../components/ProductInfoModal';
+import PhoneBackConfirmationModal from '../components/PhoneBackConfirmationModal';
 import NavigationHeader from '../components/NavigationHeader';
 import WhereWeAre from '../components/WhereWeAre';
 import WhoWeAre from '../components/WhoWeAre';
@@ -83,6 +83,12 @@ export default class Homepage extends React.Component {
     );
   }
 
+  renderPhoneBackConfirmationModal() {
+    return (
+      <PhoneBackConfirmationModal />
+    );
+  }
+
   render() {
     return (
       <Universe>
@@ -121,6 +127,7 @@ export default class Homepage extends React.Component {
           { this.renderPleaseWaitModal() }
           { this.renderErrorModal() }
           { this.renderProductInfoModal() }
+          { this.renderPhoneBackConfirmationModal() }
 
           <Footer brandName={this.state.business.title}
             facebookUrl={this.state.business.facebookUrl}

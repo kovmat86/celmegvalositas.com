@@ -1,44 +1,44 @@
 /* global ga, jQuery */
 import React from 'react';
 
-function trackOpenRequestModal() {
+function trackOpenPhoneBackModal() {
   ga('send', {
     hitType: 'event',
-    eventCategory: 'Request an appointment',
+    eventCategory: 'Visszahívás',
     eventAction: 'click',
-    eventLabel: 'Open'
+    eventLabel: 'Popup megnyitása'
   });
 }
 
-function trackSubmitEvent() {
+function trackSubmitPhoneBackEvent() {
   ga('send', {
     hitType: 'event',
-    eventCategory: 'Request an appointment',
+    eventCategory: 'Visszahívás',
     eventAction: 'click',
-    eventLabel: 'Submit'
+    eventLabel: 'Visszahívás elküldése'
   });      
 }
 
-function trackSubmitSuccess() {
+function trackSubmitPhoneBackEventSuccess() {
   ga('send', {
     hitType: 'event',
-    eventCategory: 'Request an appointment',
+    eventCategory: 'Visszahívás',
     eventAction: 'click',
-    eventLabel: 'Success'
+    eventLabel: 'Visszahívás elküldése - sikeres'
   });
 }
 
-function trackSubmitFailure() {
+function trackSubmitPhoneBackEventFailure() {
   ga('send', {
     hitType: 'event',
-    eventCategory: 'Request an appointment',
+    eventCategory: 'Visszahívás',
     eventAction: 'click',
-    eventLabel: 'Error'
+    eventLabel: 'Visszahívás elküldése - sikertelen'
   });
 }    
 
-function trackProductEvent(evt, data) {
-  var title = data.title || 'Invalid product';
+function trackHowWeWorkEvent(evt, data) {
+  var title = data.title || 'Hibás elem';
   ga('send', {
     hitType: 'event',
     eventCategory: 'Product',
@@ -75,5 +75,12 @@ class GoogleAnalytics extends React.Component {
   }
 }
 
-export { GoogleAnalytics, trackProductEvent, trackSubmitSuccess, trackSubmitFailure, trackSubmitEvent, trackOpenRequestModal };
+export { 
+  GoogleAnalytics, 
+  trackOpenPhoneBackModal, 
+  trackSubmitPhoneBackEvent, 
+  trackSubmitPhoneBackEventSuccess, 
+  trackSubmitPhoneBackEventFailure, 
+  trackHowWeWorkEvent 
+};
 export default GoogleAnalytics;
