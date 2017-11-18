@@ -3,6 +3,15 @@
   max-width: 1000px;
 }
 
+.logo-container {
+  text-align: center;
+  img {
+    width: 25%;
+    min-height: auto;
+    margin: 0 auto 5rem;
+  }
+}
+
 
 #mission-statement-container {
   margin-left: 35px;
@@ -25,7 +34,7 @@
 
 }
 
-#consultation-container {
+.consultation-container {
   background-color: white;
   border-radius: 5px;
   box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.35);
@@ -58,55 +67,21 @@
     padding: 0;
   }
 
-  .input-box span {
-    color: $color-gray;
-    font-size: 25px;
-    margin-top: 10px;
-    left: 10px;
-    position: absolute;
-    top: 0;
-    transition: all 0.3s;
-    z-index: 5;
-  }
-
   input[type=submit] {
     float: right;
     margin: 25px 25px 0 0;
     width: 50%;
-  }
+  }  
 
-  input:not([type=submit]) {
-    width: 100%;
-    display: block;
-    border: none;
-    padding: 20px 0 20px 59px;
-    border-bottom: 1px solid $color-gray;
-    -webkit-transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-    transition: all 0.3s cubic-bezier(0.64, 0.09, 0.08, 1);
-    background: -webkit-linear-gradient(to top, rgba(255, 255, 255, 0) 98%, #FDA10E 2%);
-    background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 98%, #FDA10E 2%);
-    background-position: -800px 0;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    font-family: open-light;
+}
+
+.ui-timepicker-container {
+  .ui-menu-item {
     font-size: 16px;
-    color: #999;
-
-    &:focus {
-      box-shadow: none;
-      outline: none;
-      background-position: 0 0;
-      color: $input-focus-color;
-      border-color: $input-focus-color !important
-    }
-
-    &::placeholder,
-    &::-webkit-input-placeholder,
-    &::-moz-placeholder,
-    &:-ms-input-placeholder,
-    &:-moz-placeholder {
-      color: $input-focus-color;
-    }
   }
 
+  .ui-state-hover {    
+    background-color: #eaeada;
+    border: 1px solid transparent;
+  }
 }

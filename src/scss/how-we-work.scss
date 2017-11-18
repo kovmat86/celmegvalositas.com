@@ -1,11 +1,12 @@
 #howwework {
 
-  margin: auto;
-  max-width: 800px;
+  margin: -5rem auto auto;
+  max-width: 1000px;
 
   h2 {
     border: none;
     font-size: 35px;
+    font-weight: normal;
     text-transform: uppercase;
   }
 
@@ -26,12 +27,20 @@
     border-radius: 10px;
     border: 1px solid $color-grey;
     color: $color-grey;
-    padding: 4rem 1rem 1rem;
+    cursor: pointer;
+    padding: 2rem;
     position: relative;
     margin: 0 auto 4rem;
-    min-height: 480px;
-    max-width: 260px;
+    min-height: 820px;
+    max-width: 460px;
     text-align: center;
+    top: 0;
+    transition: all 0.2s;
+
+    &:hover {
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
+      transform: scale(1.025);
+    }
 
     button {
       bottom: 0;
@@ -48,10 +57,31 @@
       line-height: 20px;
     }
 
+    h5 {
+      color: $color-blue;
+      font-size: 16px;
+      margin: 25px auto;
+      line-height: 20px;
+    }
+
     p {
       color: $color-blue;
-      font-size: 40px;
-      line-height: 40px;
+      font-size: 16px;
+      line-height: 1.5rem;
+      text-align: justify;
+
+      &.price {
+        color: $color-grey;
+        font-size: 30px;
+        text-align: center;
+      }
+
+      &.length {
+        color: $color-gold;
+        font-size: 16px;
+        text-align: center;
+      }
+
     }
 
     span {
