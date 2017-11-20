@@ -1,3 +1,4 @@
+/* global $ */
 import React from 'react';
 import { hideModal } from '../helpers/popups';
 import { trackOpenAppointmentModal } from './GoogleAnalytics';

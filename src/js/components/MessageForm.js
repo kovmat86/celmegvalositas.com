@@ -3,16 +3,11 @@ import React from 'react';
 import { Icon } from 'react-fa';
 import { showPleaseWaitModal, hidePleaseWaitModal } from './PleaseWaitModal';
 import { showErrorModal } from './ErrorModal';
-import { showPhoneBackConfirmationModal } from './PhoneBackConfirmationModal';
-import { 
-  trackSubmitPhoneBackEvent,
-  trackSubmitPhoneBackEventSuccess,
-  trackSubmitPhoneBackEventFailure
-} from './GoogleAnalytics';
+import { showMessageConfirmationModal } from './MessageConfirmationModal';
 
 const endpoint = process.env.PHONEBACK_SERVICE;
 
-class PhoneBackForm extends React.Component {
+class MessageForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -42,7 +37,6 @@ class PhoneBackForm extends React.Component {
     Promise
       .resolve()
       .then(this.props.onSubmit)
-      .then(trackSubmitPhoneBackEvent)
       .then(showPleaseWaitModal)
       .then(this.sendFormDataToMessageService.bind(this))
       .then(hidePleaseWaitModal)
@@ -75,13 +69,11 @@ class PhoneBackForm extends React.Component {
   }
 
   happyPath() {
-    trackSubmitPhoneBackEventSuccess();
-    showPhoneBackConfirmationModal();
+    showMessageConfirmationModal();
     this.props.onSuccess();
   }
 
   sadPath() {
-    trackSubmitPhoneBackEventFailure();
     return hidePleaseWaitModal()
       .then(showErrorModal);
   }  
@@ -136,5 +128,5 @@ class PhoneBackForm extends React.Component {
   }
 }
 
-export { PhoneBackForm };
-export default PhoneBackForm;
+export { MessageForm };
+export default MessageForm;

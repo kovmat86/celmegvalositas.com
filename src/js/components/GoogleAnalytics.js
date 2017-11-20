@@ -118,6 +118,10 @@ export {
   trackSubmitPhoneBackEvent, 
   trackSubmitPhoneBackEventSuccess, 
   trackSubmitPhoneBackEventFailure, 
-  trackHowWeWorkEvent 
+  trackHowWeWorkEvent,
+  trackOpenAppointmentModal,
+  trackSubmitAppointmentEvent,
+  trackSubmitAppointmentEventSuccess,
+  trackSubmitAppointmentEventFailure
 };
 export default GoogleAnalytics;
