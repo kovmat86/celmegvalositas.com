@@ -156,7 +156,8 @@ ul.scroll-nav {
   z-index: 5;
 }
 
-input:not([type=submit]) {
+input:not([type=submit]), 
+textarea {
   width: 100%;
   display: block;
   border: none;

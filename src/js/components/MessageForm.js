@@ -5,7 +5,7 @@ import { showPleaseWaitModal, hidePleaseWaitModal } from './PleaseWaitModal';
 import { showErrorModal } from './ErrorModal';
 import { showMessageConfirmationModal } from './MessageConfirmationModal';
 
-const endpoint = process.env.PHONEBACK_SERVICE;
+const endpoint = process.env.MESSAGE_SERVICE;
 
 class MessageForm extends React.Component {
 
@@ -18,17 +18,6 @@ class MessageForm extends React.Component {
   }
 
   componentDidMount() {
-    $(`#${this.id} .timepicker`).timepicker({
-      timeFormat: 'HH:mm',
-      interval: 30,
-      minTime: '8',
-      maxTime: '21:00',
-      defaultTime: new Date().getHours(),
-      startTime: '08:00',
-      dynamic: false,
-      dropdown: true,
-      scrollbar: true
-    });
   }
 
   onClick(evt) {
@@ -83,7 +72,7 @@ class MessageForm extends React.Component {
       <form id={this.id}>
         <div className="form-group row">
           <div className="col input-box">
-            <input aria-label="name" type="text" className="form-control" placeholder="Név" />
+            <input name="name" aria-label="name" type="text" className="form-control" placeholder="Név" />
             <span>
               <Icon name="user" />
             </span>
@@ -91,15 +80,7 @@ class MessageForm extends React.Component {
         </div>
         <div className="form-group row">
           <div className="col input-box">
-            <input aria-label="phone" type="text" className="form-control" placeholder="Telefonszám" />
-            <span>
-              <Icon name="phone" />
-            </span>
-          </div>
-        </div>
-        <div className="form-group row">
-          <div className="col input-box">
-            <input aria-label="email" type="text" className="form-control" placeholder="Email" />
+            <input name="email" aria-label="email" type="text" className="form-control" placeholder="Email" />
             <span>
               <Icon name="envelope" />
             </span>
@@ -107,9 +88,9 @@ class MessageForm extends React.Component {
         </div>
         <div className="form-group row">
           <div className="col input-box">
-            <input aria-label="hours of callback" className="form-control timepicker" placeholder="Visszahívás időpontja" />
+            <textarea name="message" aria-label="message" placeholder="Írja le ide a kérdését!" />
             <span>
-              <Icon name="clock-o" />
+              <Icon name="comment" />
             </span>
           </div>
         </div>                

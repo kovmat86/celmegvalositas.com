@@ -77,7 +77,7 @@ class AppointmentForm extends React.Component {
       <form id={this.id}>
         <div className="form-group row">
           <div className="col input-box">
-            <input aria-label="name" type="text" className="form-control" placeholder="Név" />
+            <input name="name" aria-label="name" type="text" className="form-control" placeholder="Név" />
             <span>
               <Icon name="user" />
             </span>
@@ -85,7 +85,7 @@ class AppointmentForm extends React.Component {
         </div>
         <div className="form-group row">
           <div className="col input-box">
-            <input aria-label="phone" type="text" className="form-control" placeholder="Telefonszám" />
+            <input name="phone" aria-label="phone" type="text" className="form-control" placeholder="Telefonszám" />
             <span>
               <Icon name="phone" />
             </span>
@@ -93,7 +93,7 @@ class AppointmentForm extends React.Component {
         </div>
         <div className="form-group row">
           <div className="col input-box">
-            <input aria-label="email" type="text" className="form-control" placeholder="Email" />
+            <input name="email" aria-label="email" type="text" className="form-control" placeholder="Email" />
             <span>
               <Icon name="envelope" />
             </span>
@@ -101,7 +101,7 @@ class AppointmentForm extends React.Component {
         </div>
         <div className="form-group row">
           <div className="col input-box">
-            <input aria-label="hours of callback" className="form-control timepicker" placeholder="Visszahívás időpontja" />
+            <input name="date" aria-label="hours of callback" className="form-control timepicker" placeholder="Visszahívás időpontja" />
             <span>
               <Icon name="clock-o" />
             </span>
