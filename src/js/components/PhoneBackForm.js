@@ -10,7 +10,7 @@ import {
   trackSubmitPhoneBackEventFailure
 } from './GoogleAnalytics';
 
-const messageServiceUrl = process.env.MESSAGE_SERVICE;
+const endpoint = process.env.PHONEBACK_SERVICE;
 
 class PhoneBackForm extends React.Component {
 
@@ -59,7 +59,7 @@ class PhoneBackForm extends React.Component {
         contentType: 'application/json',
         dataType: 'json',
         data: json,
-        url: messageServiceUrl,
+        url: endpoint,
         success: resolve,
         error: reject
       });

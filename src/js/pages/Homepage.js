@@ -37,6 +37,7 @@ export default class Homepage extends React.Component {
       homepage: ContentProvider.get('homepage') || {},
       pleaseWaitModal: ContentProvider.get('pleaseWaitModal') || {},
       defaultErrorModal: ContentProvider.get('defaultErrorModal') || {}
+
     };
   }
 
@@ -123,11 +124,13 @@ export default class Homepage extends React.Component {
           </Section>
 
           <RequestModal contentProvider={ContentProvider} />
+          <AppointmentModal contentProvider={ContentProvider} />
           { this.renderRequestConfirmationModal() }
           { this.renderPleaseWaitModal() }
           { this.renderErrorModal() }
           { this.renderProductInfoModal() }
           { this.renderPhoneBackConfirmationModal() }
+          { this.renderAppointmentConfirmationModal() }
 
           <Footer brandName={this.state.business.title}
             facebookUrl={this.state.business.facebookUrl}

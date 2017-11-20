@@ -47,6 +47,43 @@ function trackHowWeWorkEvent(evt, data) {
   });
 }
 
+function trackOpenAppointmentModal() {
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'Konzultáció foglalása',
+    eventAction: 'click',
+    eventLabel: 'Popup megnyitása'
+  });
+}
+
+function trackSubmitAppointmentEvent() {
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'Konzultáció foglalása',
+    eventAction: 'click',
+    eventLabel: 'Konzultáció foglalás elküldése'
+  });      
+}
+
+function trackSubmitAppointmentEventSuccess() {
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'Konzultáció foglalása',
+    eventAction: 'click',
+    eventLabel: 'Konzultáció foglalás elküldése - sikeres'
+  });
+}
+
+function trackSubmitAppointmentEventFailure() {
+  ga('send', {
+    hitType: 'event',
+    eventCategory: 'Konzultáció foglalása',
+    eventAction: 'click',
+    eventLabel: 'Konzultáció foglalás elküldése - sikertelen'
+  });
+}    
+
+
 class GoogleAnalytics extends React.Component {
 
   static propTypes = {

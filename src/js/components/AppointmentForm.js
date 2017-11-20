@@ -10,7 +10,7 @@ import {
   trackSubmitAppointmentEventFailure
 } from './GoogleAnalytics';
 
-const messageServiceUrl = process.env.MESSAGE_SERVICE;
+const endpoint = process.env.APPOINTMENT_SERVICE;
 
 class AppointmentForm extends React.Component {
 
@@ -20,9 +20,6 @@ class AppointmentForm extends React.Component {
     this.onClick = this.onClick.bind(this);
     this.onSubmit = this.props.onSubmit || (() => {});
     this.onSuccess = this.props.onSuccess || (() => {});
-  }
-
-  componentDidMount() {
   }
 
   onClick(evt) {
@@ -48,7 +45,7 @@ class AppointmentForm extends React.Component {
         contentType: 'application/json',
         dataType: 'json',
         data: json,
-        url: messageServiceUrl,
+        url: endpoint,
         success: resolve,
         error: reject
       });
