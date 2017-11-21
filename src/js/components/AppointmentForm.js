@@ -22,6 +22,14 @@ class AppointmentForm extends React.Component {
     this.onSuccess = this.props.onSuccess || (() => {});
   }
 
+  componentDidMount() {
+    const $form = $(`#${this.id}`);
+    $form.find('.datepicker').datepicker({
+      startDate: 'today',
+      todayHighlight: true
+    });    
+  }
+
   onClick(evt) {
     evt.preventDefault();
     
@@ -101,10 +109,7 @@ class AppointmentForm extends React.Component {
         </div>
         <div className="form-group row">
           <div className="col input-box">
-            <input name="date" aria-label="hours of callback" className="form-control timepicker" placeholder="Visszahívás időpontja" />
-            <span>
-              <Icon name="clock-o" />
-            </span>
+            <div className="datepicker" />
           </div>
         </div>                
         <div className="form-group row">

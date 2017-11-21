@@ -298,6 +298,12 @@ footer.neal-footer {
   transform: translate(0, 25%); 
 }
 
+#request-appointment-modal {
+  &.modal.fade.in .modal-dialog {
+    transform: translate(0, 10%); 
+  }
+}
+
 .modal-content {
   border: none;
 }
