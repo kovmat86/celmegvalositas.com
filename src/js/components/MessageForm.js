@@ -3,16 +3,11 @@ import React from 'react';
 import { Icon } from 'react-fa';
 import { showPleaseWaitModal, hidePleaseWaitModal } from './PleaseWaitModal';
 import { showErrorModal } from './ErrorModal';
-import { showPhoneBackConfirmationModal } from './PhoneBackConfirmationModal';
-import { 
-  trackSubmitPhoneBackEvent,
-  trackSubmitPhoneBackEventSuccess,
-  trackSubmitPhoneBackEventFailure
-} from './GoogleAnalytics';
+import { showMessageConfirmationModal } from './MessageConfirmationModal';
 
-const endpoint = process.env.PHONEBACK_SERVICE;
+const endpoint = process.env.MESSAGE_SERVICE;
 
-class PhoneBackForm extends React.Component {
+class MessageForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -23,17 +18,6 @@ class PhoneBackForm extends React.Component {
   }
 
   componentDidMount() {
-    $(`#${this.id} .timepicker`).timepicker({
-      timeFormat: 'HH:mm',
-      interval: 30,
-      minTime: '8',
-      maxTime: '21:00',
-      defaultTime: new Date().getHours(),
-      startTime: '08:00',
-      dynamic: false,
-      dropdown: true,
-      scrollbar: true
-    });
   }
 
   onClick(evt) {
@@ -42,7 +26,6 @@ class PhoneBackForm extends React.Component {
     Promise
       .resolve()
       .then(this.props.onSubmit)
-      .then(trackSubmitPhoneBackEvent)
       .then(showPleaseWaitModal)
       .then(this.sendFormDataToMessageService.bind(this))
       .then(hidePleaseWaitModal)
@@ -75,13 +58,11 @@ class PhoneBackForm extends React.Component {
   }
 
   happyPath() {
-    trackSubmitPhoneBackEventSuccess();
-    showPhoneBackConfirmationModal();
+    showMessageConfirmationModal();
     this.props.onSuccess();
   }
 
   sadPath() {
-    trackSubmitPhoneBackEventFailure();
     return hidePleaseWaitModal()
       .then(showErrorModal);
   }  
@@ -99,14 +80,6 @@ class PhoneBackForm extends React.Component {
         </div>
         <div className="form-group row">
           <div className="col input-box">
-            <input name="phone" aria-label="phone" type="text" className="form-control" placeholder="Telefonszám" />
-            <span>
-              <Icon name="phone" />
-            </span>
-          </div>
-        </div>
-        <div className="form-group row">
-          <div className="col input-box">
             <input name="email" aria-label="email" type="text" className="form-control" placeholder="Email" />
             <span>
               <Icon name="envelope" />
@@ -115,9 +88,9 @@ class PhoneBackForm extends React.Component {
         </div>
         <div className="form-group row">
           <div className="col input-box">
-            <input name="time" aria-label="hours of callback" className="form-control timepicker" placeholder="Visszahívás időpontja" />
+            <textarea name="message" aria-label="message" placeholder="Írja le ide a kérdését!" />
             <span>
-              <Icon name="clock-o" />
+              <Icon name="comment" />
             </span>
           </div>
         </div>                
@@ -136,5 +109,5 @@ class PhoneBackForm extends React.Component {
   }
 }
 
-export { PhoneBackForm };
-export default PhoneBackForm;
+export { MessageForm };
+export default MessageForm;

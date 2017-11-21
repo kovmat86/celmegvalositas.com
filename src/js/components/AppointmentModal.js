@@ -1,21 +1,21 @@
 /* global $ */
 import React from 'react';
 import { hideModal } from '../helpers/popups';
-import { trackOpenPhoneBackModal } from './GoogleAnalytics';
-import PhoneBackForm from './PhoneBackForm';
+import { trackOpenAppointmentModal } from './GoogleAnalytics';
+import AppointmentForm from './AppointmentForm';
 
 class RequestModal extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = this.props.contentProvider.get('phoneBackModal') || {};
+    this.state = this.props.contentProvider.get('appointmentModal') || {};
     this.onSubmit = this.onSubmit.bind(this);
-    this.modalId = 'request-phoneback-modal';
+    this.modalId = 'request-appointment-modal';
   }
 
   componentDidMount() {
     const $modal = $(`#${this.modalId}`);
-    $modal.on('shown.bs.modal', () => trackOpenPhoneBackModal());
+    $modal.on('shown.bs.modal', () => trackOpenAppointmentModal());
   }
 
   onSubmit() {
@@ -37,7 +37,7 @@ class RequestModal extends React.Component {
             </div>
             <div className="modal-body">
               <p>{ this.state.description }</p>
-              <PhoneBackForm 
+              <AppointmentForm 
                 ctaLabel={this.state.buttonLabel} 
                 onSubmit={this.onSubmit} />
             </div>

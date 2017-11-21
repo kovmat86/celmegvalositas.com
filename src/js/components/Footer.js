@@ -1,37 +1,29 @@
 import React from 'react';
-import { Container, Row, Col } from './Helper';
+import { Container } from './Helper';
+import MessageForm from './MessageForm';
 
 export class Footer extends React.Component {
-
-  static propTypes = {
-    brandName: React.PropTypes.node.isRequired,
-    facebookUrl: React.PropTypes.string,
-    twitterUrl: React.PropTypes.string,
-    githubUrl: React.PropTypes.string,
-    email: React.PropTypes.node,
-    address: React.PropTypes.node,
-  };
 
   render() {
     return (
       <footer className="neal-footer navbar" id="contact">
         <Container>
-          <Row>
-            <Col size={['xs-12', 'md-8']}>
-              <p className="neal-footer-copyright">
-                © {new Date().getFullYear()}, {this.props.brandName}
-              </p>
-              { this.renderBusinessDetails(this.props.phone1, 'phone') }
-              { this.renderBusinessDetails(this.props.whatsup, 'whatsapp') }
-              { this.renderBusinessDetails(this.props.phone2, 'phone') }
-              { this.renderBusinessDetails(this.props.skype, 'skype') }
-              { this.renderBusinessDetails(this.props.email, 'google', `mailto:${this.props.email}`) }
-              { this.renderBusinessDetails(this.props.address, 'map-marker') }              
-            </Col>
-            <Col className="social-icons-container" size={['xs-12', 'md-4']}>
-              {this.renderSocialIcons()}
-            </Col>
-          </Row>
+          <div className="col-xs-12 col-md-6">
+            <p className="neal-footer-copyright">
+              © {new Date().getFullYear()}, {this.props.brandName}
+            </p>
+            { this.renderBusinessDetails(this.props.phone1, 'phone') }
+            { this.renderBusinessDetails(this.props.whatsup, 'whatsapp') }
+            { this.renderBusinessDetails(this.props.phone2, 'phone') }
+            { this.renderBusinessDetails(this.props.skype, 'skype') }
+            { this.renderBusinessDetails(this.props.email, 'google', `mailto:${this.props.email}`) }
+            { this.renderBusinessDetails(this.props.address, 'map-marker') }
+            { this.renderSocialIcons() }
+          </div>
+          <div className="col-xs-12 col-md-6 consultation-container">
+            <p>{this.props.formTitle}</p>
+            <MessageForm ctaLabel={this.props.formCtaLabel} />
+          </div>
         </Container>
       </footer>
     );
@@ -57,7 +49,7 @@ export class Footer extends React.Component {
 
   renderSocialIcons() {
     return (
-      <ul className="nav navbar-nav neal-footer-social pull-right">
+      <ul className="nav navbar-nav neal-footer-social">
         { this.renderSocialIcon('fa-twitter', this.props.twitterUrl) }
         { this.renderSocialIcon('fa-facebook', this.props.facebookUrl) }
         { this.renderSocialIcon('fa-skype', this.props.skype) }
@@ -65,7 +57,6 @@ export class Footer extends React.Component {
       </ul>
     );
   }
-
 
   renderSocialIcon(iconClass, url) {
     if (!url || !iconClass) { return null; }

@@ -3,16 +3,16 @@ import React from 'react';
 import { Icon } from 'react-fa';
 import { showPleaseWaitModal, hidePleaseWaitModal } from './PleaseWaitModal';
 import { showErrorModal } from './ErrorModal';
-import { showPhoneBackConfirmationModal } from './PhoneBackConfirmationModal';
+import { showAppointmentConfirmationModal } from './AppointmentConfirmationModal';
 import { 
-  trackSubmitPhoneBackEvent,
-  trackSubmitPhoneBackEventSuccess,
-  trackSubmitPhoneBackEventFailure
+  trackSubmitAppointmentEvent,
+  trackSubmitAppointmentEventSuccess,
+  trackSubmitAppointmentEventFailure
 } from './GoogleAnalytics';
 
-const endpoint = process.env.PHONEBACK_SERVICE;
+const endpoint = process.env.APPOINTMENT_SERVICE;
 
-class PhoneBackForm extends React.Component {
+class AppointmentForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -22,27 +22,13 @@ class PhoneBackForm extends React.Component {
     this.onSuccess = this.props.onSuccess || (() => {});
   }
 
-  componentDidMount() {
-    $(`#${this.id} .timepicker`).timepicker({
-      timeFormat: 'HH:mm',
-      interval: 30,
-      minTime: '8',
-      maxTime: '21:00',
-      defaultTime: new Date().getHours(),
-      startTime: '08:00',
-      dynamic: false,
-      dropdown: true,
-      scrollbar: true
-    });
-  }
-
   onClick(evt) {
     evt.preventDefault();
     
     Promise
       .resolve()
       .then(this.props.onSubmit)
-      .then(trackSubmitPhoneBackEvent)
+      .then(trackSubmitAppointmentEvent)
       .then(showPleaseWaitModal)
       .then(this.sendFormDataToMessageService.bind(this))
       .then(hidePleaseWaitModal)
@@ -75,13 +61,13 @@ class PhoneBackForm extends React.Component {
   }
 
   happyPath() {
-    trackSubmitPhoneBackEventSuccess();
-    showPhoneBackConfirmationModal();
+    trackSubmitAppointmentEventSuccess();
+    showAppointmentConfirmationModal();
     this.props.onSuccess();
   }
 
   sadPath() {
-    trackSubmitPhoneBackEventFailure();
+    trackSubmitAppointmentEventFailure();
     return hidePleaseWaitModal()
       .then(showErrorModal);
   }  
@@ -115,7 +101,7 @@ class PhoneBackForm extends React.Component {
         </div>
         <div className="form-group row">
           <div className="col input-box">
-            <input name="time" aria-label="hours of callback" className="form-control timepicker" placeholder="Visszahívás időpontja" />
+            <input name="date" aria-label="hours of callback" className="form-control timepicker" placeholder="Visszahívás időpontja" />
             <span>
               <Icon name="clock-o" />
             </span>
@@ -136,5 +122,5 @@ class PhoneBackForm extends React.Component {
   }
 }
 
-export { PhoneBackForm };
-export default PhoneBackForm;
+export { AppointmentForm };
+export default AppointmentForm;
