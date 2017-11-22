@@ -35,18 +35,20 @@ class PhoneBackForm extends React.Component {
       startTime: '08:00',
       dynamic: false,
       dropdown: true,
-      scrollbar: true
+      scrollbar: true,
+      change: time => {
+        if (!time) return;
+        this.validate();
+      }
     });
 
-    $form.find('input').blur(() => {
-      this.isFormInvalid();
-    });
+    this.$form.find('input:not(.timepicker)').keyup(() => this.validate());
   }
 
   onClick(evt) {
     evt.preventDefault();
 
-    if (this.isFormInvalid()) return;
+    if (this.validate()) return;
     
     Promise
       .resolve()
@@ -59,43 +61,44 @@ class PhoneBackForm extends React.Component {
       .catch(this.sadPath.bind(this));
   }
 
-  isFormInvalid() {
+  validate() {
     const $form = this.$form;
-    const json = JSON.stringify(this.serializeFormData($form));
+    const data = this.serializeFormData($form);
     let error = false;
     let $name = $form.find('input[name=name]');
     let $phone;
     let $time;
+    let $email;
 
-    if (!json.name) {
-      $name.addClass('error');
+    if (!data.name) {
+      $name.parent().addClass('error');
       error = true;
     } else {
-      $name.removeClass('error')
+      $name.parent().removeClass('error')
     }
 
     $phone = $form.find('input[name=phone]');
-    if (!json.phone || !json.phone.match(phoneRegExp)) {
-      $phone.addClass('error');
+    if (!data.phone || !data.phone.match(phoneRegExp)) {
+      $phone.parent().addClass('error');
       error = true;
     } else {
-      $phone.removeClass('error')
+      $phone.parent().removeClass('error')
     }
 
     $email = $form.find('input[name=email]');
-    if (!json.email || !json.email.match(emailRegExp)) {
-      $email.addClass('error');
+    if (!data.email || !data.email.match(emailRegExp)) {
+      $email.parent().addClass('error');
       error = true;
     } else {
-      $email.removeClass('error')
+      $email.parent().removeClass('error')
     }
     
     $time = $form.find('input[name=time]');
-    if (!json.time) {
-      $time.addClass('error');
+    if (!data.time) {
+      $time.parent().addClass('error');
       error = true;
     } else {
-      $time.removeClass('error')
+      $time.parent().removeClass('error')
     }
 
     return error;
