@@ -156,6 +156,10 @@ ul.scroll-nav {
   z-index: 5;
 }
 
+.input-box.error span .fa {
+  color: red;
+}
+
 input:not([type=submit]), 
 textarea {
   width: 100%;
@@ -189,7 +193,19 @@ textarea {
   &:-moz-placeholder {
     color: $input-focus-color;
   }
+
+  .error & {
+    color: red;
+    &::placeholder,
+    &::-webkit-input-placeholder,
+    &::-moz-placeholder,
+    &:-ms-input-placeholder,
+    &:-moz-placeholder {
+      color: red;
+    }
+  }
 }
+
 
 /* hack to make the timepicker appear on the top of modals */
 .ui-timepicker-container {
@@ -296,6 +312,12 @@ footer.neal-footer {
 
 .modal.fade.in .modal-dialog {
   transform: translate(0, 25%); 
+}
+
+#request-appointment-modal {
+  &.modal.fade.in .modal-dialog {
+    transform: translate(0, 10%); 
+  }
 }
 
 .modal-content {

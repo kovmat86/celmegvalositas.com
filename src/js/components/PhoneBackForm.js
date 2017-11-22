@@ -11,6 +11,8 @@ import {
 } from './GoogleAnalytics';
 
 const endpoint = process.env.PHONEBACK_SERVICE;
+const emailRegExp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const phoneRegExp = /[0-9]{7,11}/;
 
 class PhoneBackForm extends React.Component {
 
@@ -23,7 +25,8 @@ class PhoneBackForm extends React.Component {
   }
 
   componentDidMount() {
-    $(`#${this.id} .timepicker`).timepicker({
+    this.$form = $(`#${this.id}`);
+    this.$form.find('.timepicker').timepicker({
       timeFormat: 'HH:mm',
       interval: 30,
       minTime: '8',
@@ -32,12 +35,20 @@ class PhoneBackForm extends React.Component {
       startTime: '08:00',
       dynamic: false,
       dropdown: true,
-      scrollbar: true
+      scrollbar: true,
+      change: time => {
+        if (!time) return;
+        this.validateAgainstErrors();
+      }
     });
+
+    this.$form.find('input:not(.timepicker)').keyup(() => this.validateAgainstErrors());
   }
 
   onClick(evt) {
     evt.preventDefault();
+
+    if (this.validateAgainstErrors()) return;
     
     Promise
       .resolve()
@@ -50,9 +61,51 @@ class PhoneBackForm extends React.Component {
       .catch(this.sadPath.bind(this));
   }
 
+  validateAgainstErrors() {
+    const $form = this.$form;
+    const data = this.serializeFormData($form);
+    let error = false;
+    let $name = $form.find('input[name=name]');
+    let $phone;
+    let $time;
+    let $email;
+
+    if (!data.name) {
+      $name.parent().addClass('error');
+      error = true;
+    } else {
+      $name.parent().removeClass('error')
+    }
+
+    $phone = $form.find('input[name=phone]');
+    if (!data.phone || !data.phone.match(phoneRegExp)) {
+      $phone.parent().addClass('error');
+      error = true;
+    } else {
+      $phone.parent().removeClass('error')
+    }
+
+    $email = $form.find('input[name=email]');
+    if (!data.email || !data.email.match(emailRegExp)) {
+      $email.parent().addClass('error');
+      error = true;
+    } else {
+      $email.parent().removeClass('error')
+    }
+    
+    $time = $form.find('input[name=time]');
+    if (!data.time) {
+      $time.parent().addClass('error');
+      error = true;
+    } else {
+      $time.parent().removeClass('error')
+    }
+
+    return error;
+  }
+
   sendFormDataToMessageService() {
-    const $form = $(`#${this.id}`);
-    const json = JSON.stringify(this.serializeFormData($form));
+    const json = JSON.stringify(this.serializeFormData(this.$form));
     return new Promise((resolve, reject) => {
       $.ajax({
         method: 'POST',
