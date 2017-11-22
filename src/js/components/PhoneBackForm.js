@@ -38,17 +38,17 @@ class PhoneBackForm extends React.Component {
       scrollbar: true,
       change: time => {
         if (!time) return;
-        this.validate();
+        this.validateAgainstErrors();
       }
     });
 
-    this.$form.find('input:not(.timepicker)').keyup(() => this.validate());
+    this.$form.find('input:not(.timepicker)').keyup(() => this.validateAgainstErrors());
   }
 
   onClick(evt) {
     evt.preventDefault();
 
-    if (this.validate()) return;
+    if (this.validateAgainstErrors()) return;
     
     Promise
       .resolve()
@@ -61,7 +61,7 @@ class PhoneBackForm extends React.Component {
       .catch(this.sadPath.bind(this));
   }
 
-  validate() {
+  validateAgainstErrors() {
     const $form = this.$form;
     const data = this.serializeFormData($form);
     let error = false;

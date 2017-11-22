@@ -11,6 +11,8 @@ import {
 } from './GoogleAnalytics';
 
 const endpoint = process.env.APPOINTMENT_SERVICE;
+const emailRegExp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const phoneRegExp = /[0-9]{7,11}/;
 
 class AppointmentForm extends React.Component {
 
@@ -23,16 +25,20 @@ class AppointmentForm extends React.Component {
   }
 
   componentDidMount() {
-    const $form = $(`#${this.id}`);
-    $form.find('.datepicker').datepicker({
+    this.$form = $(`#${this.id}`);
+    this.$form.find('.datepicker').datepicker({
       startDate: 'today',
       todayHighlight: true
-    });    
+    });
+
+    this.$form.find('input').keyup(() => this.validateAgainstErrors());
   }
 
   onClick(evt) {
     evt.preventDefault();
     
+    if (this.validateAgainstErrors()) return;
+
     Promise
       .resolve()
       .then(this.props.onSubmit)
@@ -44,8 +50,42 @@ class AppointmentForm extends React.Component {
       .catch(this.sadPath.bind(this));
   }
 
+  validateAgainstErrors() {
+    const $form = this.$form;
+    const data = this.serializeFormData($form);
+    let error = false;
+    let $name = $form.find('input[name=name]');
+    let $phone;
+    let $email;
+
+    if (!data.name) {
+      $name.parent().addClass('error');
+      error = true;
+    } else {
+      $name.parent().removeClass('error')
+    }
+
+    $phone = $form.find('input[name=phone]');
+    if (!data.phone || !data.phone.match(phoneRegExp)) {
+      $phone.parent().addClass('error');
+      error = true;
+    } else {
+      $phone.parent().removeClass('error')
+    }
+
+    $email = $form.find('input[name=email]');
+    if (!data.email || !data.email.match(emailRegExp)) {
+      $email.parent().addClass('error');
+      error = true;
+    } else {
+      $email.parent().removeClass('error')
+    }
+    
+    return error;
+  }  
+
   sendFormDataToMessageService() {
-    const $form = $(`#${this.id}`);
+    const $form = this.$form;
     const json = JSON.stringify(this.serializeFormData($form));
     return new Promise((resolve, reject) => {
       $.ajax({
