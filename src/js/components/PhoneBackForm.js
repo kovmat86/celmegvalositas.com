@@ -11,6 +11,8 @@ import {
 } from './GoogleAnalytics';
 
 const endpoint = process.env.PHONEBACK_SERVICE;
+const emailRegExp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const phoneRegExp = /[0-9]{7,11}/;
 
 class PhoneBackForm extends React.Component {
 
@@ -23,7 +25,8 @@ class PhoneBackForm extends React.Component {
   }
 
   componentDidMount() {
-    $(`#${this.id} .timepicker`).timepicker({
+    this.$form = $(`#${this.id}`);
+    this.$form.find('.timepicker').timepicker({
       timeFormat: 'HH:mm',
       interval: 30,
       minTime: '8',
@@ -34,10 +37,16 @@ class PhoneBackForm extends React.Component {
       dropdown: true,
       scrollbar: true
     });
+
+    $form.find('input').blur(() => {
+      this.isFormInvalid();
+    });
   }
 
   onClick(evt) {
     evt.preventDefault();
+
+    if (this.isFormInvalid()) return;
     
     Promise
       .resolve()
@@ -50,9 +59,50 @@ class PhoneBackForm extends React.Component {
       .catch(this.sadPath.bind(this));
   }
 
-  sendFormDataToMessageService() {
-    const $form = $(`#${this.id}`);
+  isFormInvalid() {
+    const $form = this.$form;
     const json = JSON.stringify(this.serializeFormData($form));
+    let error = false;
+    let $name = $form.find('input[name=name]');
+    let $phone;
+    let $time;
+
+    if (!json.name) {
+      $name.addClass('error');
+      error = true;
+    } else {
+      $name.removeClass('error')
+    }
+
+    $phone = $form.find('input[name=phone]');
+    if (!json.phone || !json.phone.match(phoneRegExp)) {
+      $phone.addClass('error');
+      error = true;
+    } else {
+      $phone.removeClass('error')
+    }
+
+    $email = $form.find('input[name=email]');
+    if (!json.email || !json.email.match(emailRegExp)) {
+      $email.addClass('error');
+      error = true;
+    } else {
+      $email.removeClass('error')
+    }
+    
+    $time = $form.find('input[name=time]');
+    if (!json.time) {
+      $time.addClass('error');
+      error = true;
+    } else {
+      $time.removeClass('error')
+    }
+
+    return error;
+  }
+
+  sendFormDataToMessageService() {
+    const json = JSON.stringify(this.serializeFormData(this.$form));
     return new Promise((resolve, reject) => {
       $.ajax({
         method: 'POST',
