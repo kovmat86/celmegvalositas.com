@@ -148,8 +148,13 @@ class AppointmentForm extends React.Component {
           </div>
         </div>
         <div className="form-group row">
-          <div className="col input-box">
+          <div className="col-xs-12 col-md-6 input-box">
             <div className="datepicker" />
+          </div>
+          <div className="col-xs-12 col-md-6">
+            <button>Test</button>
+            <button>Test</button>
+            <button>Test</button>
           </div>
         </div>                
         <div className="form-group row">
