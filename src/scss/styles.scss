@@ -311,13 +311,56 @@ footer.neal-footer {
 }
 
 .modal.fade.in .modal-dialog {
-  transform: translate(0, 25%); 
+  transform: translate(0, 25%);
+  max-width: 600px;
 }
 
 #request-appointment-modal {
   &.modal.fade.in .modal-dialog {
     transform: translate(0, 10%); 
   }
+
+  .datepicker-container {
+    margin-top: 2rem;
+  }
+
+  .datepicker .datepicker-inline {
+    width: 100%;
+    .table-condensed {
+      margin: auto;
+    }    
+  }
+
+  button:not(.close) {
+    width: 100%;
+    margin: auto auto 1rem;
+    &.outline {
+      color: $appointment-button-color;
+      border-color: $appointment-button-color;
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    &.disabled {
+      color: $color-grey;
+      border-color: $color-grey;
+      cursor: auto;
+      &:hover {
+        color: $color-grey;
+        border-color: $color-grey;
+        background: white;
+      }
+    }
+
+    &.selected {
+      color: white;
+      background-color: $appointment-button-color;
+    }
+
+  }
+
 }
 
 .modal-content {

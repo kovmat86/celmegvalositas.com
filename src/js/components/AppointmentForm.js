@@ -32,6 +32,14 @@ class AppointmentForm extends React.Component {
     });
 
     this.$form.find('input').keyup(() => this.validateAgainstErrors());
+    const $appointmentButtons = this.$form.find('.datepicker-container button');
+    $appointmentButtons.click(evt => {
+      const $elm = $(evt.target);
+      if (!$elm.hasClass('disabled')) {
+        $appointmentButtons.removeClass('selected');
+        $elm.addClass('selected');
+      }
+    });
   }
 
   onClick(evt) {
@@ -147,9 +155,14 @@ class AppointmentForm extends React.Component {
             </span>
           </div>
         </div>
-        <div className="form-group row">
-          <div className="col input-box">
+        <div className="form-group row datepicker-container">
+          <div className="col-xs-12 col-md-6 input-box">
             <div className="datepicker" />
+          </div>
+          <div className="col-xs-12 col-md-6">
+            <button aria-label="appointment slot 1" className="btn outline" type="button">10:00 - 12:00</button>
+            <button aria-label="appointment slot 2" className="btn outline" type="button">13:00 - 15:00</button>
+            <button aria-label="appointment slot 3" className="btn outline" type="button">16:00 - 18:00</button>
           </div>
         </div>                
         <div className="form-group row">
