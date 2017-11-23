@@ -35,8 +35,10 @@ class AppointmentForm extends React.Component {
     const $appointmentButtons = this.$form.find('.datepicker-container button');
     $appointmentButtons.click(evt => {
       const $elm = $(evt.target);
-      $appointmentButtons.removeClass('selected');
-      $elm.addClass('selected');
+      if (!$elm.hasClass('disabled')) {
+        $appointmentButtons.removeClass('selected');
+        $elm.addClass('selected');
+      }
     });
   }
 
