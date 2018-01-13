@@ -92,7 +92,13 @@ export default class Homepage extends React.Component {
             phone2={this.state.business.phoneNumberOptional}
             address={this.state.business.address}
             formCtaLabel={this.state.messageService.ctaLabel} 
-            formTitle={this.state.messageService.title} />
+            formTitle={this.state.messageService.title} 
+            projectName={this.state.business.projectName}
+            projectCode={this.state.business.projectCode}
+            projectEndDate={this.state.business.projectEndDate}
+            projectSupportRate={this.state.business.projectSupportRate}
+            projectSupportInHuf={this.state.business.projectSupportInHuf}
+            />
 
         </Page>
       </Universe>

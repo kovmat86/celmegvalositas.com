@@ -1,4 +1,5 @@
 import React from 'react';
+import Szechenyi2020Logo from '../components/Szechenyi2020Logo';
 
 class NavigationHeader extends React.Component {
 
@@ -19,12 +20,14 @@ class NavigationHeader extends React.Component {
 
   render() {
     return (
-      <ul className="nav nav-pills menu-center margin-top-30 scroll-nav scroll-down">
-        <li role="presentation" key={999}><a href="#home"><i className="fa fa-home" />{this.props.title}</a></li>
-        {this.renderMenuItems()}
-      </ul>
+      <div>
+        <Szechenyi2020Logo />
+        <ul className="nav nav-pills menu-center margin-top-30 scroll-nav scroll-down">
+          <li role="presentation" key={999}><a href="#home"><i className="fa fa-home" />{this.props.title}</a></li>
+          {this.renderMenuItems()}
+        </ul>
+      </div>
     );
-
   }
 
 }
