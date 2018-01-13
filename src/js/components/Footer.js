@@ -18,6 +18,11 @@ export class Footer extends React.Component {
             { this.renderBusinessDetails(this.props.skype, 'skype') }
             { this.renderBusinessDetails(this.props.email, 'google', `mailto:${this.props.email}`) }
             { this.renderBusinessDetails(this.props.address, 'map-marker') }
+            { this.renderBusinessDetails(this.props.projectName, 'copyright') }
+            { this.renderBusinessDetails(this.props.projectCode, 'institution') }
+            { this.renderBusinessDetails(this.props.projectEndDate, 'clock-o') }
+            { this.renderBusinessDetails(this.props.projectSupportInHuf, 'shield') }
+            { this.renderBusinessDetails(this.props.projectSupportRate, 'shield') }
             { this.renderSocialIcons() }
           </div>
           <div className="col-xs-12 col-md-6 consultation-container">
