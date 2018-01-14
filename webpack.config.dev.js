@@ -51,7 +51,8 @@ module.exports = {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV),
         'CONTENTFUL_SPACE': JSON.stringify(process.env.CONTENTFUL_SPACE),
         'CONTENTFUL_ACCESS_TOKEN': JSON.stringify(process.env.CONTENTFUL_ACCESS_TOKEN),
-        'MESSAGE_SERVICE': JSON.stringify(process.env.MESSAGE_SERVICE)
+        'MESSAGE_SERVICE': JSON.stringify(process.env.MESSAGE_SERVICE),
+        'PHONEBACK_SERVICE': JSON.stringify(process.env.PHONEBACK_SERVICE)
       }
     }),      
     new HtmlWebpackPlugin({
