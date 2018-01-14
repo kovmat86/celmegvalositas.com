@@ -20,6 +20,7 @@ import ErrorModal from '../components/ErrorModal';
 import ProductInfoModal from '../components/ProductInfoModal';
 import PhoneBackConfirmationModal from '../components/PhoneBackConfirmationModal';
 import AppointmentConfirmationModal from '../components/AppointmentConfirmationModal';
+import MessageConfirmationModal from '../components/MessageConfirmationModal';
 
 const heroVideo = {
   poster: '/resources/images/first-frame-hero.jpg',
@@ -79,6 +80,7 @@ export default class Homepage extends React.Component {
           <AppointmentModal contentProvider={ContentProvider} />
           <PhoneBackConfirmationModal contentProvider={ContentProvider} />
           <AppointmentConfirmationModal contentProvider={ContentProvider} />
+          <MessageConfirmationModal contentProvider={ContentProvider} />
           <PleaseWaitModal contentProvider={ContentProvider} />
           <ErrorModal contentProvider={ContentProvider} />
 

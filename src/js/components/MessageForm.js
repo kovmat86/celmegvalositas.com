@@ -79,7 +79,7 @@ class MessageForm extends React.Component {
     }
 
     $message = $form.find('textarea');
-    if (!data.message) {
+    if (!data.request) {
       $message.parent().addClass('error');
       error = true;
     } else {
@@ -99,7 +99,7 @@ class MessageForm extends React.Component {
 
   happyPath() {
     showMessageConfirmationModal();
-    this.props.onSuccess();
+    this.onSuccess();
   }
 
   sadPath() {
@@ -128,7 +128,7 @@ class MessageForm extends React.Component {
         </div>
         <div className="form-group row">
           <div className="col input-box">
-            <textarea name="message" aria-label="message" placeholder="Írd le a kérdésed!" />
+            <textarea name="request" aria-label="request" placeholder="Írd le a kérdésed!" />
             <span>
               <Icon name="comment" />
             </span>
