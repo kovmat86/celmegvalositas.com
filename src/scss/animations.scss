@@ -2,6 +2,9 @@
 
 .viewport-animation:not(.in-viewport) {
   animation-play-state: paused;
+  @include mobile {
+  	animation-play-state: running;
+  }
 }
 
 .delay-1 { animation-delay: 1s; }

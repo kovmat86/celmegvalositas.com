@@ -7,6 +7,10 @@
     font-weight: normal;
     padding: 0;
     margin: auto;
+
+    @include mobile {
+      font-size: 40px;
+    }
   }
 
   button {

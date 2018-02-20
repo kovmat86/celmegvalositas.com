@@ -9,6 +9,10 @@
   top: -15rem;
   z-index: 50;
 
+  @inclue mobile {
+    padding: 1rem;
+  }
+
   h2 {
     border: none;
     color: $color-blue;
@@ -16,6 +20,10 @@
     font-weight: bold;
     padding: 2rem;
     margin: auto;
+
+    @include mobile {
+        font-size: 28px;
+    }
   }
 
   p {
@@ -26,6 +34,12 @@
     line-height: 1.6;
     padding: 0 5rem 1rem;
     margin: auto;
+
+    @include mobile {
+      font-size: 1rem;
+      line-height: 1.5;
+      padding: 0 1rem 1rem;
+    }
   }
 
   .what-we-do-icon {

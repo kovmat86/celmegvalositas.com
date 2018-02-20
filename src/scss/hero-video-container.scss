@@ -9,6 +9,10 @@
     width: 25%;
     min-height: auto;
     margin: 0 auto 5rem;
+
+    @include mobile {
+      margin-top: 14rem;
+    }
   }
 }
 
@@ -21,12 +25,22 @@
     font-size: 50px;
     margin-bottom: 3rem;
     text-shadow: 3px 3px rgba(0, 0, 0, 0.25);
+
+    @include mobile {
+      font-size: 23px;
+      margin-bottom: 2rem;
+    }
   }
 
   p {
     color: $color-gray;
     font-size: 26px;
     text-align: justify;
+
+    @include mobile {
+      font-size: 17px;
+      margin: auto 2rem;
+    }
   }
 
   @include small-screen {
