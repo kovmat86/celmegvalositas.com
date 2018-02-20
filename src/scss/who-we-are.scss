@@ -16,19 +16,9 @@
     line-height: 2rem;
   }
 
-  button {
-    margin: 50px auto;
-    width: 300px;
-    font-size: 23px;    
-
-    div {
-      background: transparent;
-      transition: 0.5s all;
-
-      &:hover {
-        @include gold-bg();
-      }
-    }
+  a {
+    width: 50%;
+    margin: 3rem auto;  
   }
 
 }

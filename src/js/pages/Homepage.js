@@ -49,7 +49,7 @@ export default class Homepage extends React.Component {
         <Page>
           
           <GoogleAnalytics account="UA-103461022-2" />
-          <NavigationHeader contentProvider={ContentProvider} title={this.state.business.title} />
+          <NavigationHeader contentProvider={ContentProvider} title="Célmegvalósítás" />
 
           <HeroVideo {... heroVideo}>
             <HeroVideoContent contentProvider={ContentProvider} />

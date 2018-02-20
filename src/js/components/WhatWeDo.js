@@ -12,7 +12,7 @@ class WhatWeDo extends React.Component {
   render() {
     return (
       <div id="whatwedo" className="what-we-do-container">
-        <Icon name="cogs" size="2x" className="what-we-do-icon animated bounceIn delay-100" />
+        <Icon name="compass" size="2x" className="what-we-do-icon animated bounceIn delay-100" />
         <h2 className=" animated bounceIn delay-250">{this.state.title}</h2>
         <ReactMarkdown source={this.state.text} className=" animated bounceIn delay-500" />
       </div>

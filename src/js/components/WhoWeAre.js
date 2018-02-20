@@ -13,7 +13,7 @@ class WhoWeAre extends React.Component {
       <div id="whoweare" className="who-we-are-container">
         <h2 className="gold-gradient-color viewport-animation animated fadeInUp">{this.state.title}</h2>
         <ReactMarkdown source={this.state.text} className="viewport-animation animated fadeInUp delay-250" />
-        <button aria-label={this.state.ctaLabel} className="btn outline btn-gold btn-block viewport-animation animated fadeInUp delay-500">{this.state.ctaLabel}</button>
+        <a aria-label={this.state.ctaLabel} href="http://blog.celmegvalositas.com" target="_blank" className="btn outline btn-gold btn-block viewport-animation animated fadeInUp delay-500">{this.state.ctaLabel}</a>
       </div>
     );
   }

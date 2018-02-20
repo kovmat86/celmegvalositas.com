@@ -12,8 +12,8 @@ class ErrorModal extends React.Component {
   }
 
   static defaultProps = {
-    title: 'Az operáció sikertelen',
-    text: 'A szolgaltatás jelenleg nem elérhető. Kérjük problalja meg később!',
+    title: 'Türelmedet kérjük!',
+    text: 'A szolgáltatás átmenetileg nem elérhető. Kérjük, próbáld meg később, vagy írj e-mailt az info@celmegvalositas.com-ra!',
     modalId: 'error-modal',
     buttonText: 'Rendben'
   };

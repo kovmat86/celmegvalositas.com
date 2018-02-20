@@ -10,7 +10,7 @@ export class Footer extends React.Component {
         <Container>
           <div className="col-xs-12 col-md-6">
             <p className="neal-footer-copyright">
-              © {new Date().getFullYear()}, {this.props.brandName}
+              © 2017, {this.props.brandName}
             </p>
             { this.renderBusinessDetails(this.props.phone1, 'phone') }
             { this.renderBusinessDetails(this.props.whatsup, 'whatsapp') }
