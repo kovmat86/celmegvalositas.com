@@ -4,15 +4,21 @@ import { Icon } from 'react-fa';
 import { showPleaseWaitModal, hidePleaseWaitModal } from './PleaseWaitModal';
 import { showErrorModal } from './ErrorModal';
 import { showAppointmentConfirmationModal } from './AppointmentConfirmationModal';
+import AppointmentTimePicker from './AppointmentTimePicker';
 import { 
   trackSubmitAppointmentEvent,
   trackSubmitAppointmentEventSuccess,
   trackSubmitAppointmentEventFailure
 } from './GoogleAnalytics';
 
-const endpoint = process.env.APPOINTMENT_SERVICE;
-const emailRegExp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-const phoneRegExp = /[0-9]{7,11}/;
+//const endpoint = process.env.APPOINTMENT_SERVICE;
+//const emailRegExp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+//const phoneRegExp = /[0-9]{7,11}/;
+
+const host = 'http://localhost:8095/';
+const endPoint = 'request/appointments';
+const emailRegExp = /.*/;
+const phoneRegExp = /.*/;
 
 class AppointmentForm extends React.Component {
 
@@ -20,26 +26,15 @@ class AppointmentForm extends React.Component {
     super(props);
     this.id = this.props.id || `from-${Math.round(Math.random() * 1000)}`;
     this.onClick = this.onClick.bind(this);
+    this.onPickDate = this.onPickDate.bind(this);
+    this.onPickSlot = this.onPickSlot.bind(this);
     this.onSubmit = this.props.onSubmit || (() => {});
     this.onSuccess = this.props.onSuccess || (() => {});
   }
 
   componentDidMount() {
     this.$form = $(`#${this.id}`);
-    this.$form.find('.datepicker').datepicker({
-      startDate: 'today',
-      todayHighlight: true
-    });
-
     this.$form.find('input').keyup(() => this.validateAgainstErrors());
-    const $appointmentButtons = this.$form.find('.datepicker-container button');
-    $appointmentButtons.click(evt => {
-      const $elm = $(evt.target);
-      if (!$elm.hasClass('disabled')) {
-        $appointmentButtons.removeClass('selected');
-        $elm.addClass('selected');
-      }
-    });
   }
 
   onClick(evt) {
@@ -58,14 +53,20 @@ class AppointmentForm extends React.Component {
       .catch(this.sadPath.bind(this));
   }
 
+  onPickDate(date) {
+    this.setState({selectedDate: date});
+  }
+
+  onPickSlot(slot) {
+    this.setState({selectedSlot: slot});
+  }
+
   validateAgainstErrors() {
     const $form = this.$form;
     const data = this.serializeFormData($form);
     let error = false;
-    let $name = $form.find('input[name=name]');
-    let $phone;
-    let $email;
 
+    const $name = $form.find('input[name=name]');
     if (!data.name) {
       $name.parent().addClass('error');
       error = true;
@@ -73,7 +74,7 @@ class AppointmentForm extends React.Component {
       $name.parent().removeClass('error')
     }
 
-    $phone = $form.find('input[name=phone]');
+    const $phone = $form.find('input[name=phone]');
     if (!data.phone || !data.phone.match(phoneRegExp)) {
       $phone.parent().addClass('error');
       error = true;
@@ -81,27 +82,37 @@ class AppointmentForm extends React.Component {
       $phone.parent().removeClass('error')
     }
 
-    $email = $form.find('input[name=email]');
+    const $email = $form.find('input[name=email]');
     if (!data.email || !data.email.match(emailRegExp)) {
       $email.parent().addClass('error');
       error = true;
     } else {
       $email.parent().removeClass('error')
     }
-    
+
+    // TODO: proper feedback to user about missing date/slot
+    if (!this.state.selectedDate || !this.state.selectedSlot) {
+      console.log('Please select date and time slot!');
+      error = true;
+    }
+
     return error;
-  }  
+  }
 
   sendFormDataToMessageService() {
     const $form = this.$form;
-    const json = JSON.stringify(this.serializeFormData($form));
+    let formData = this.serializeFormData($form);
+    formData.date = this.state.selectedDate;
+    formData.slot = this.state.selectedSlot;   
+
+    const json = JSON.stringify(formData);
     return new Promise((resolve, reject) => {
       $.ajax({
         method: 'POST',
         contentType: 'application/json',
         dataType: 'json',
         data: json,
-        url: endpoint,
+        url: host + endPoint,
         success: resolve,
         error: reject
       });
@@ -110,7 +121,7 @@ class AppointmentForm extends React.Component {
 
   serializeFormData($form) {
     if (!$form) throw 'Invalid input!';
-    return $form.serializeArray().reduce((m, o) => { 
+    return $form.serializeArray().reduce((m, o) => {
       m[o.name] = o.value; 
       return m;
     }, {});
@@ -122,7 +133,8 @@ class AppointmentForm extends React.Component {
     this.props.onSuccess();
   }
 
-  sadPath() {
+  sadPath(err) {
+    console.log(err);
     trackSubmitAppointmentEventFailure();
     return hidePleaseWaitModal()
       .then(showErrorModal);
@@ -155,16 +167,11 @@ class AppointmentForm extends React.Component {
             </span>
           </div>
         </div>
-        <div className="form-group row datepicker-container">
-          <div className="col-xs-12 col-md-6 input-box">
-            <div className="datepicker" />
-          </div>
-          <div className="col-xs-12 col-md-6">
-            <button aria-label="appointment slot 1" className="btn outline" type="button">10:00 - 12:00</button>
-            <button aria-label="appointment slot 2" className="btn outline" type="button">13:00 - 15:00</button>
-            <button aria-label="appointment slot 3" className="btn outline" type="button">16:00 - 18:00</button>
-          </div>
-        </div>                
+        <AppointmentTimePicker
+          formId={this.id}
+          onPickDate={this.onPickDate}
+          onPickSlot={this.onPickSlot}
+          />
         <div className="form-group row">
           <div className="col pull-right">
             <input 

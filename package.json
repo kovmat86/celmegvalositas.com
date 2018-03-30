@@ -38,6 +38,7 @@
     "forever": "^0.15.3",
     "html-webpack-plugin": "^2.24.1",
     "lodash": "^4.17.3",
+    "moment": "^2.10.0",
     "neal-react": "^0.2.5",
     "node-sass": "^4.1.1",
     "pug": "^2.0.0-beta6",
