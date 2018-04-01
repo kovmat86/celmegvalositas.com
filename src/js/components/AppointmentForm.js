@@ -11,23 +11,25 @@ import {
   trackSubmitAppointmentEventFailure
 } from './GoogleAnalytics';
 
-//const endpoint = process.env.APPOINTMENT_SERVICE;
-//const emailRegExp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-//const phoneRegExp = /[0-9]{7,11}/;
+// TODO: kovmat86 hardcoded hostname because process.env does not work
+const serviceHost = process.env.SERVICE_HOST || 'http://localhost:8095/';
+const requestEndPoint = 'request/appointment';
+const fetchEndPoint='fetch/appointments';
 
-const host = 'http://localhost:8095/';
-const endPoint = 'request/appointments';
-const emailRegExp = /.*/;
-const phoneRegExp = /.*/;
+const endpoint = process.env.SERVICE_HOST;
+const emailRegExp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const phoneRegExp = /[0-9]{7,11}/;
 
 class AppointmentForm extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = { appointments: [] }
     this.id = this.props.id || `from-${Math.round(Math.random() * 1000)}`;
     this.onClick = this.onClick.bind(this);
     this.onPickDate = this.onPickDate.bind(this);
     this.onPickSlot = this.onPickSlot.bind(this);
+    this.fetchAppointments = this.fetchAppointments.bind(this);
     this.onSubmit = this.props.onSubmit || (() => {});
     this.onSuccess = this.props.onSuccess || (() => {});
   }
@@ -35,11 +37,19 @@ class AppointmentForm extends React.Component {
   componentDidMount() {
     this.$form = $(`#${this.id}`);
     this.$form.find('input').keyup(() => this.validateAgainstErrors());
+    this.fetchAppointments();
+  }
+
+  fetchAppointments() {
+    // TODO: proper error on the UI when appointments cannot be fetched
+    fetch(serviceHost + fetchEndPoint)
+      .then(result => result.json())
+      .then(appointments => this.setState({appointments}));
   }
 
   onClick(evt) {
     evt.preventDefault();
-    
+
     if (this.validateAgainstErrors()) return;
 
     Promise
@@ -54,11 +64,15 @@ class AppointmentForm extends React.Component {
   }
 
   onPickDate(date) {
-    this.setState({selectedDate: date});
+    this.setState({
+      selectedDate: date,
+      selectedSlot: undefined
+    });
   }
 
   onPickSlot(slot) {
     this.setState({selectedSlot: slot});
+    this.validateAgainstErrors();
   }
 
   validateAgainstErrors() {
@@ -90,10 +104,12 @@ class AppointmentForm extends React.Component {
       $email.parent().removeClass('error')
     }
 
-    // TODO: proper feedback to user about missing date/slot
+    const $errorMessage = $form.find('.errorMessage')
     if (!this.state.selectedDate || !this.state.selectedSlot) {
-      console.log('Please select date and time slot!');
+      $errorMessage.text('Kérjük válasszon időpontot!');
       error = true;
+    } else {
+      $errorMessage.text('');
     }
 
     return error;
@@ -103,7 +119,7 @@ class AppointmentForm extends React.Component {
     const $form = this.$form;
     let formData = this.serializeFormData($form);
     formData.date = this.state.selectedDate;
-    formData.slot = this.state.selectedSlot;   
+    formData.slot = this.state.selectedSlot;
 
     const json = JSON.stringify(formData);
     return new Promise((resolve, reject) => {
@@ -112,7 +128,7 @@ class AppointmentForm extends React.Component {
         contentType: 'application/json',
         dataType: 'json',
         data: json,
-        url: host + endPoint,
+        url: serviceHost + requestEndPoint,
         success: resolve,
         error: reject
       });
@@ -130,7 +146,8 @@ class AppointmentForm extends React.Component {
   happyPath() {
     trackSubmitAppointmentEventSuccess();
     showAppointmentConfirmationModal();
-    this.props.onSuccess();
+    this.setState({selectedSlot: undefined});
+    this.fetchAppointments();
   }
 
   sadPath(err) {
@@ -169,9 +186,11 @@ class AppointmentForm extends React.Component {
         </div>
         <AppointmentTimePicker
           formId={this.id}
+          appointments={this.state.appointments}
           onPickDate={this.onPickDate}
           onPickSlot={this.onPickSlot}
           />
+        <span className='error errorMessage' />
         <div className="form-group row">
           <div className="col pull-right">
             <input 

@@ -1,9 +1,7 @@
 /* global $ */
 import React from 'react';
-import moment from 'moment'
-
-const host = 'http://localhost:8095/';
-const endPoint='fetch/appointments';
+import moment from 'moment';
+import _ from 'lodash';
 
 class AppointmentTimePicker extends React.Component {
 
@@ -12,30 +10,19 @@ class AppointmentTimePicker extends React.Component {
     this.formId = this.props.formId;
 
     this.state = {
-      appointments: {},
       slots: []
     };
 
-    this.fetchAppointments = this.fetchAppointments.bind(this);
     this.pickDate = this.pickDate.bind(this);
   }
 
-  componentDidMount() {
-    this.fetchAppointments();
-  }
-
-  fetchAppointments() {
-    fetch(host + endPoint)
-    .then(result => result.json())
-    .then(appointments => this.setState({ appointments, slots: [] }))
-    .then(() => {
+  componentDidUpdate(prevProps) {
+    if (_.isEmpty(prevProps.appointments) && !_.isEmpty(this.props.appointments)) {
       const $form = $(`#${this.props.formId}`);
-      const dates = Object.keys(this.state.appointments);
+      const dates = Object.keys(this.props.appointments);
       const endDate = this.calculateEndDate(dates);
       const datesDisabled = this.calculateDatesDisabled(dates, endDate);
-  
-      console.log('disabledDates: ' + JSON.stringify(datesDisabled));
-  
+
       $form.find('.datepicker')
         .datepicker({
           startDate: 'today',
@@ -44,32 +31,12 @@ class AppointmentTimePicker extends React.Component {
           language: 'hu',
           datesDisabled
         })
-        .on('changeDate', this.pickDate); 
-    })
-
-    /*
-    return {
-      '2018-03-27': {
-        '10:00 - 12:00': 'free',
-        '13:00 - 15:00': 'reserved',
-        '16:00 - 18:00': 'free'
-      },
-      '2018-03-28': {
-        '10:00 - 12:00': 'free',
-        '13:00 - 15:00': 'free'
-      },
-      '2018-03-29': {
-        '10:00 - 12:00': 'free',
-        '13:00 - 15:00': 'free',
-        '16:00 - 18:00': 'free'
-      },
-      '2018-03-30': {
-        '10:00 - 12:00': 'reserved',
-        '13:00 - 15:00': 'reserved',
-        '16:00 - 18:00': 'reserved'
+        .on('changeDate', this.pickDate);
+    } else {
+      if (!_.isEqual(prevProps.appointments, this.props.appointments)) {
+        this.setState({slots: []});
       }
     }
-    // */
   }
 
   calculateEndDate(dates) {
@@ -80,13 +47,13 @@ class AppointmentTimePicker extends React.Component {
     return dates.reduce((m, i) => (i > m) && i || m, '');
   }
 
-  hasFreeSlot(currentDate) {
-    if (!this.state.appointments.hasOwnProperty(currentDate)) {
+  hasFreeSlot(date) {
+    if (!this.props.appointments.hasOwnProperty(date)) {
       return false;
     }
 
-    const currentSlot = this.state.appointments[currentDate];
-    return Object.keys(currentSlot).some(key => currentSlot[key] === 'free')
+    const slot = this.props.appointments[date];
+    return Object.keys(slot).some(key => slot[key] === 'free');
   }
 
   calculateDatesDisabled(dates, endDateString) {
@@ -97,8 +64,6 @@ class AppointmentTimePicker extends React.Component {
     let datesDisabled = [];
     let currentDate = moment().startOf('day');
     let endDate = moment(endDateString).startOf('day');
-    console.log(`currentDate: ${currentDate}`);
-    console.log(`endDate: ${endDate}`);
     while (currentDate <= endDate) {
       const currentDateString = currentDate.format('YYYY-MM-DD');
       if (!this.hasFreeSlot(currentDateString)) {
@@ -111,13 +76,11 @@ class AppointmentTimePicker extends React.Component {
 
   pickDate(e) {
     const origDate = e.date;
-    console.log(`orig date: ${origDate}`);
     const pickedDate = moment(origDate).format('YYYY-MM-DD');
-    console.log(`selected date: ${pickedDate}`);
     this.setState({
-      slots: this.state.appointments.hasOwnProperty(pickedDate)
-        ? Object.keys(this.state.appointments[pickedDate]).filter(
-          slot => this.state.appointments[pickedDate][slot] === 'free')
+      slots: this.props.appointments.hasOwnProperty(pickedDate)
+        ? Object.keys(this.props.appointments[pickedDate]).filter(
+          slot => this.props.appointments[pickedDate][slot] === 'free')
         : []
     });
     this.props.onPickDate(pickedDate);
