@@ -10,7 +10,7 @@ class AppointmentTimePicker extends React.Component {
     this.formId = this.props.formId;
 
     this.state = {
-      slots: []
+      pickDate: ''
     };
 
     this.pickDate = this.pickDate.bind(this);
@@ -27,6 +27,7 @@ class AppointmentTimePicker extends React.Component {
         .datepicker({
           startDate: 'today',
           endDate,
+          maxViewMode: 0,
           todayHighlight: this.hasFreeSlot(moment().format('YYYY-MM-DD')),
           language: 'hu',
           datesDisabled
@@ -77,12 +78,7 @@ class AppointmentTimePicker extends React.Component {
   pickDate(e) {
     const origDate = e.date;
     const pickedDate = moment(origDate).format('YYYY-MM-DD');
-    this.setState({
-      slots: this.props.appointments.hasOwnProperty(pickedDate)
-        ? Object.keys(this.props.appointments[pickedDate]).filter(
-          slot => this.props.appointments[pickedDate][slot] === 'free')
-        : []
-    });
+    this.setState({ pickedDate });
     this.props.onPickDate(pickedDate);
 
     const $form = $(`#${this.formId}`);
@@ -98,10 +94,16 @@ class AppointmentTimePicker extends React.Component {
   }
 
   renderSlots() {
+    const pickedDate = this.state.pickedDate;
+    const slots = this.props.appointments.hasOwnProperty(pickedDate)
+    ? Object.keys(this.props.appointments[pickedDate]).
+      filter(slot => this.props.appointments[pickedDate][slot] === 'free')
+    : [];
+
     return (
       <div className='col-xs-12 col-md-6'>
         {
-          this.state.slots.map((slot =>
+          slots.map((slot =>
               <button
                 aria-label="appointment slot"
                 class="btn outline"

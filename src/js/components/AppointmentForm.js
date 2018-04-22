@@ -11,12 +11,12 @@ import {
   trackSubmitAppointmentEventFailure
 } from './GoogleAnalytics';
 
-// TODO: kovmat86 hardcoded hostname because process.env does not work
-const serviceHost = process.env.SERVICE_HOST || 'http://localhost:8095/';
-const requestEndPoint = 'request/appointment';
-const fetchEndPoint='fetch/appointments';
+import { config } from '../config.js';
 
-const endpoint = process.env.SERVICE_HOST;
+const serviceHost = config.serviceHost;
+const requestEndPoint = '/request/appointment';
+const fetchEndPoint='/fetch/appointments';
+
 const emailRegExp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const phoneRegExp = /[0-9]{7,11}/;
 
@@ -24,7 +24,7 @@ class AppointmentForm extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { appointments: [] }
+    this.state = { appointments: {} }
     this.id = this.props.id || `from-${Math.round(Math.random() * 1000)}`;
     this.onClick = this.onClick.bind(this);
     this.onPickDate = this.onPickDate.bind(this);
@@ -146,8 +146,11 @@ class AppointmentForm extends React.Component {
   happyPath() {
     trackSubmitAppointmentEventSuccess();
     showAppointmentConfirmationModal();
-    this.setState({selectedSlot: undefined});
-    this.fetchAppointments();
+    this.state.appointments[this.state.selectedDate][this.state.selectedSlot] = 'reserved';
+    this.setState({
+      appointments: this.state.appointments,
+      selectedSlot: undefined
+    });
   }
 
   sadPath(err) {

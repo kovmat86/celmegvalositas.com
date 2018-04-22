@@ -5,7 +5,9 @@ import { showPleaseWaitModal, hidePleaseWaitModal } from './PleaseWaitModal';
 import { showErrorModal } from './ErrorModal';
 import { showMessageConfirmationModal } from './MessageConfirmationModal';
 
-const endpoint = process.env.MESSAGE_SERVICE;
+import { config } from '../config.js';
+
+const endpoint = config.serviceHost + '/send/message';
 const emailRegExp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 class MessageForm extends React.Component {

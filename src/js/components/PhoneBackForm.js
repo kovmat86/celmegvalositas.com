@@ -10,7 +10,9 @@ import {
   trackSubmitPhoneBackEventFailure
 } from './GoogleAnalytics';
 
-const endpoint = process.env.PHONEBACK_SERVICE;
+import { config } from '../config.js';
+
+const endpoint = config.serviceHost + '/request/phoneback';
 const emailRegExp = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const phoneRegExp = /[0-9]{7,11}/;
 
