@@ -31,10 +31,10 @@ class PhoneBackForm extends React.Component {
     this.$form.find('.timepicker').timepicker({
       timeFormat: 'HH:mm',
       interval: 30,
-      minTime: '8',
-      maxTime: '21:00',
+      minTime: '09:00',
+      maxTime: '18:00',
       defaultTime: new Date().getHours(),
-      startTime: '08:00',
+      startTime: '09:00',
       dynamic: false,
       dropdown: true,
       scrollbar: true,
@@ -60,7 +60,9 @@ class PhoneBackForm extends React.Component {
       .then(this.sendFormDataToMessageService.bind(this))
       .then(hidePleaseWaitModal)
       .then(this.happyPath.bind(this))
-      .catch(this.sadPath.bind(this));
+      .catch(
+        this.sadPath.bind(this)
+      );
   }
 
   validateAgainstErrors() {
@@ -132,10 +134,10 @@ class PhoneBackForm extends React.Component {
   happyPath() {
     trackSubmitPhoneBackEventSuccess();
     showPhoneBackConfirmationModal();
-    this.props.onSuccess();
   }
 
-  sadPath() {
+  sadPath(error) {
+    console.log(error);
     trackSubmitPhoneBackEventFailure();
     return hidePleaseWaitModal()
       .then(showErrorModal);

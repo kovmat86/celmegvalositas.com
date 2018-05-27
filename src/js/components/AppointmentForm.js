@@ -153,8 +153,8 @@ class AppointmentForm extends React.Component {
     });
   }
 
-  sadPath(err) {
-    console.log(err);
+  sadPath(error) {
+    console.log(error);
     trackSubmitAppointmentEventFailure();
     return hidePleaseWaitModal()
       .then(showErrorModal);

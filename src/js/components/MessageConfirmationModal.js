@@ -13,7 +13,7 @@ class MessageConfirmationModal extends React.Component {
 
   static defaultProps = {
     title: 'Üzenet küldése sikeres volt',
-    text: 'Hamarosan küldjük a válaszolt a megadott email címre!',
+    text: 'Köszönjük, hogy kapcsolatba léptél velünk. Hamarosan küldjük a választ a megadott e-mail címre!',
     modalId: 'message-confirmation-modal',
     buttonText: 'Rendben'
   };
