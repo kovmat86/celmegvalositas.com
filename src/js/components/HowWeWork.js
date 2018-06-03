@@ -32,10 +32,13 @@ class HowWeWork extends React.Component {
       let button; 
       if (item.ctaLabel) {
         const onClick = item.ctaCode ? showModal.bind(this, item.ctaCode) : (() => {});
-        button = <button 
+        button = 
+        <div className="button-wrapper">
+          <button 
           aria-label="text" 
           className="btn outline btn-gold btn-block" 
-          onClick={onClick}>{item.ctaLabel}</button>;
+          onClick={onClick}>{item.ctaLabel}</button>
+        </div>;
       }
       const delay = `delay-${(idx + 1) * 250}`;
       
@@ -50,7 +53,7 @@ class HowWeWork extends React.Component {
             <p>{item.text}</p>
             <h5>{item.whatHappensTitle}</h5>
             <p>{item.activityDescription}</p>
-            {button}
+              {button}
           </div>
         </div>
       );

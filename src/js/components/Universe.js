@@ -4,17 +4,25 @@ import React, {Component} from 'react';
 export default class Universe extends Component {
 
   componentDidMount() {
-    this.initScrollAnimations();
+    window.addEventListener('resize', this.setHeaderPosition);
+    this.setHeaderPosition();
     this.initViewportAnimationS();
   }
 
-  initScrollAnimations() {
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.setHeaderPosition);
+  }
+
+  setHeaderPosition() {
+    const height = $('#root > div > div > div > div:nth-child(2) > ul').height();
+    $('#szlogo-container').css({ top: height + 20 + 'px' });
+
     // Smooth Scroll Start
     var navInneer = $('.scroll-nav');
     navInneer.singlePageNav({
       updateHash: false,
       filter: ':not(.external)',
-      offset: 52,
+      offset: height + 52,
       speed: 1000,
       currentClass: 'sdm-active',
       easing: 'swing',

@@ -41,10 +41,6 @@
     top: 0;
     transition: all 0.2s;
 
-    @include mobile {
-      max-height: 900px;
-    }
-
     &:hover {
       box-shadow: 0 20px 30px rgba(0, 0, 0, 0.25);
       transform: scale(1.025);
