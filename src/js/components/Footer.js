@@ -25,7 +25,7 @@ export class Footer extends React.Component {
             { this.renderBusinessDetails(this.props.projectSupportRate, 'shield') }
             { this.renderSocialIcons() }
           </div>
-          <div className="col-xs-12 col-md-6 consultation-container">
+          <div className="col-xs-12 col-md-6 consultation-container consultation-container-bottom">
             <p>{this.props.formTitle}</p>
             <MessageForm ctaLabel={this.props.formCtaLabel} />
           </div>

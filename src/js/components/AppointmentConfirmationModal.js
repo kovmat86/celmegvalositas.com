@@ -13,7 +13,7 @@ class AppointmentConfirmationModal extends React.Component {
 
   static defaultProps = {
     title: 'Konzultáció foglalása sikeres volt',
-    text: 'A konzultáció részletes útmutatóját elküldtük a megadott email címre!',
+    text: 'A konzultáció részletes útmutatóját elküldtük a megadott e-mail címre!',
     modalId: 'appointment-confirmation-modal',
     buttonText: 'Rendben'
   };

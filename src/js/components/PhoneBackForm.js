@@ -164,7 +164,7 @@ class PhoneBackForm extends React.Component {
         </div>
         <div className="form-group row">
           <div className="col input-box">
-            <input name="email" aria-label="email" type="text" className="form-control" placeholder="Email" />
+            <input name="email" aria-label="email" type="text" className="form-control" placeholder="E-mail" />
             <span>
               <Icon name="envelope" />
             </span>
